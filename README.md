@@ -1,5 +1,4 @@
-# 644
-## Spring
+# 644## Spring
 - 흔히 스프링이라 부르지만 **스프링 프레임워크**라고 하는 것이 정확한 표현이다.  
 - 자바(JAVA) 엔터프라이즈 개발을 위한 **오픈소스(Open Source)** 애플리케이션 프레임워크(Framework)  
 - 동적인 웹 사이트를 개발하기 위한 여러 가지 서비스를 제공한다.
@@ -100,5 +99,45 @@ public class MyController {
 [Spring과 Spring boot 차이](https://sas-study.tistory.com/274)
 [Spring boot 장정](https://ellune.tistory.com/38)
 
+## MVC
+- MVC 구조, MVC 패턴, MVC 아키텍쳐
+	1. 사용자가 Controller를 조작
+	2. Controller는 Model을 통해서 데이터를 가져온다
+	3.  그 정보를 바탕으로 시각적인 표현을 담당하는 View를 제어해서 사용자에게 전달하게 된다.
+- 웹 어플리케이션 설계 모델(Web Application Architecture) 이다.
+출처 : 
+[생활코딩](https://opentutorials.org/course/697/3828)
+
+## MSA
+- 마이크로 서비스 아키텍쳐
+- MSA는 큰 의미에서 SOA(Service Oriented Architecture)의 부분집합
+- 소프트웨어의 구성 요소가 한 프로젝트에 통합되어 있는 모놀리틱 아키텍쳐(Monolithic Architecture)의 대안
+- **Monolithic Architecture**
+	- 소규모 프로젝트에는 Monolithic Architecture가 훨씬 합리적
+	- 서비스/프로젝트가 커지면 커질수록, 영향도 파악 및 전체 시스템 구조의 파악에 어려움
+	- 서비스를 부분적으로 scale-out하기가 힘들다.
+	- 부분의 장애가 전체 서비스의 장애로 이어지는 경우가 발생한다.
+- **MSA 특징**
+	- 각각의 서비스는 그 크기가 작을 뿐, 서비스 자체는 하나의 모놀리틱 아키텍쳐와 유사한 구조를 가진다.
+	- 각각의 서비스는 독립적으로 배포가 가능해야하고 스스로 돌아갈 수 있는 작은 서비스이다.
+	- 각각의 서비스는 다른 서비스에 대한 의존성이 최소화 되어야함
+	- 각 서비스는 개별 프로세스로 구동 되며, REST와 같은 가벼운 방식으로 통신되어야 함.
+- **장점**
+	* 서비스 별 개별 배포 가능하여 배포 시 전체 서비스의 중단이 없다
+		-  요구사항을 신속하게 반영하여 빠르게 배포할 수 있음.
+	* 특정 서비스에 대한 확장성이 용이함.
+		-  클라우드 사용에 적합한 아키텍쳐.
+	* 특정 서비스의 장애가 전체 서비스로 확장될 가능성이 적음
+		-  부분적 장애에 대한 격리가 수월함
+- **단점**
+	- 서비스 간 호출 시 API를 사용하기 때문에, 통신 비용이나, Latency가 그만큼 늘어난다.
+	- 서비스가 분리되어 있기 때문에 테스트와 트랜잭션의 복잡도가 증가한다
+	- 데이터가 여러 서비스에 걸쳐 분산되기 때문에 한번에 조회하기 어렵고, 데이터의 정합성 또한 관리하기 어렵다
+
+
+출처:
+[MSA 제대로 이해하기(1)](https://velog.io/@tedigom/MSA-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-1-MSA%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90-3sk28yrv0e) - MSA 기본 개념
+[MSA 제대로 이해하기(2)](https://velog.io/@tedigom/MSA-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-2-MSA-Outer-Architecure) - 아키텍처 개요
+[MSA 제대로 이해하기(3)](https://velog.io/@tedigom/MSA-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-3API-Gateway-nvk2kf0zbj) - API Gateway
 #### 제작
 [stackedit](https://stackedit.io/app#)
