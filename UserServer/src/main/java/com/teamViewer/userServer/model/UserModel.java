@@ -30,10 +30,42 @@ public class UserModel {
 	@Column
 	private String name;
 
+	public int getNum() {
+		return num;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPw() {
+		return pw;
+	}
+
 	@Builder
 	public UserModel(String _id, String _pw, String _name){
 		this.id = _id;
 		this.pw = _pw;
 		this.name = _name;
+	}
+
+	public String getName() {
+		return name;
 	}
 }
