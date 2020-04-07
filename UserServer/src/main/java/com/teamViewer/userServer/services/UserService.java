@@ -18,8 +18,8 @@ public class UserService {
 		userRepositoy.save(userModel);
 	}
 
-	public Optional<UserModel> findById(String id){
-		return userRepositoy.findById(id);
+	public Optional<UserModel> findByUserId(String id){
+		return userRepositoy.findByUserId(id);
 	}
 
 	public Optional<UserModel> findByName(String name){

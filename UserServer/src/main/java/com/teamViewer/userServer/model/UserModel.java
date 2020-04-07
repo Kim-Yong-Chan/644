@@ -24,9 +24,9 @@ public class UserModel {
 	private int num;
 	/*@Column을 이용하여 데이터 베이스 컬럼 설정*/
 	@Column
-	private String id;
+	private String userId;
 	@Column
-	private String pw;
+	private String userPw;
 	@Column
 	private String name;
 
@@ -34,34 +34,34 @@ public class UserModel {
 		return num;
 	}
 
-	public String getId() {
-		return id;
-	}
-
 	public void setNum(int num) {
 		this.num = num;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public void setPw(String pw) {
-		this.pw = pw;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getPw() {
-		return pw;
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public String getUserPw() {
+		return userPw;
 	}
 
 	@Builder
-	public UserModel(String _id, String _pw, String _name){
-		this.id = _id;
-		this.pw = _pw;
+	public UserModel(String _userId, String _userPw, String _name){
+		this.userId = _userId;
+		this.userPw = _userPw;
 		this.name = _name;
 	}
 

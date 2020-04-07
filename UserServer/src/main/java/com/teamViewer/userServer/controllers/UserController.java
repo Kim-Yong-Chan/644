@@ -29,7 +29,7 @@ public class UserController {
 
 	@RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
 	public UserModel findById(@PathVariable("id") String id){
-		Optional<UserModel> optional = userService.findById(id);
+		Optional<UserModel> optional = userService.findByUserId(id);
 		if(optional.isPresent()) {
 
 			UserModel users =  optional.get();
@@ -47,7 +47,7 @@ public class UserController {
 
 			UserModel users =  optional.get();
 
-			System.out.println("find by Name id"+"["+users.getId()+"]"+"pw"+"["+users.getPw()+"]");
+			System.out.println("find by Name id"+"["+users.getUserId()+"]"+"pw"+"["+users.getUserPw()+"]");
 			return users;
 		}
 		System.out.println("find by Name null");

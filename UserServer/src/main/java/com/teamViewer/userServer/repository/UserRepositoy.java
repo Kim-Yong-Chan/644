@@ -12,6 +12,6 @@ import com.teamViewer.userServer.model.UserModel;
 JpaRepository<Entity, 기본키 타입> 을 extends하면 기본적인 Create, Read, Update, Delete가 자동으로 생성된다.*/
 @Repository
 public interface UserRepositoy extends JpaRepository<UserModel, String> {
-	public Optional<UserModel> findById(String id);
+	public Optional<UserModel> findByUserId(String userId);
 	public Optional<UserModel> findByName(String name);
 }
