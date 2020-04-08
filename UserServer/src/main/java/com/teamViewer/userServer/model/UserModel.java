@@ -3,6 +3,7 @@ package com.teamViewer.userServer.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 /*lombok을 통한 getter, setter*/
@@ -20,7 +21,7 @@ import lombok.Setter;
 public class UserModel {
 	/*@Id를 이용하여 기본 키 설정*/
 	@Id
-	@GeneratedValue // Auto IncId Generator
+	@GeneratedValue(strategy= GenerationType.IDENTITY) // Auto IncId Generator
 	private int num;
 	/*@Column을 이용하여 데이터 베이스 컬럼 설정*/
 	@Column
