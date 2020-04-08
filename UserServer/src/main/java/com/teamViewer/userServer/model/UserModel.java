@@ -12,9 +12,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/*issue#9 IntelliJ Lombok 플러그인 설치후 get, set 함수 제거*/
 @Entity
 @Table(name = "users")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
 public class UserModel {
@@ -29,34 +29,6 @@ public class UserModel {
 	private String userPw;
 	@Column
 	private String name;
-
-	public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public String getUserPw() {
-		return userPw;
-	}
 
 	@Builder
 	public UserModel(String _userId, String _userPw, String _name){
