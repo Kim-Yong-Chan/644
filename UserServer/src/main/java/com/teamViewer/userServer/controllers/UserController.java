@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,8 @@ import com.teamViewer.userServer.model.UserModel;
 import com.teamViewer.userServer.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("users")
+@CrossOrigin("*")
+@RequestMapping("/users")
 @RestController
 @ControllerAdvice
 @Slf4j
@@ -36,7 +38,7 @@ public class UserController {
 	/*issue#7 추측가능한 url 제거*/
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public void addUsers(@RequestBody UserModel usermodel){
-		System.out.println("update");
+		log.debug("update");
 		userService.addUser(usermodel);
 	}
 
