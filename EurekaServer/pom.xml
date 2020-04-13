@@ -49,8 +49,33 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>com.sun.xml.fastinfoset</groupId>
+            <artifactId>FastInfoset</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+		<dependency>
+			<groupId>com.sun.xml.fastinfoset</groupId>
+			<artifactId>FastInfoset</artifactId>
+			<version>1.2.16</version>
+		</dependency>
 
-  	</dependencies>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
