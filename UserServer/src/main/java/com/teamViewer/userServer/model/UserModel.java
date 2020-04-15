@@ -33,6 +33,9 @@ public class UserModel {
 		this.name = _name;
 	}
 
+	public UserModel() {
+	}
+
 	public String getName() {
 		return name;
 	}
