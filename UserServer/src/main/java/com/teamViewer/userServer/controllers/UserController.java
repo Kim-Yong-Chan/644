@@ -23,7 +23,7 @@ import com.teamViewer.userServer.model.UserModel;
 import com.teamViewer.userServer.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/users")
 @RestController
 @ControllerAdvice
