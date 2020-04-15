@@ -109,16 +109,18 @@
 
         var loginJson = new Object();
 
-        loginJson.id = objID;
-        loginJson.pw = objPW;
+        loginJson.userId = objID;
+        loginJson.userPw = objPW;
 
         var resultJson = JSON.stringify(loginJson);
 
         $.ajax({
             type: "POST",
-            url: "http://10.21.20.10:8080/users",
-            dataType: 'json',
-            data: resultJson,
+            url: "http://localhost:8080/users/login",
+            accept: "application/json",
+            contentType: "application/json",
+            dataType: 'text',
+            data: JSON.stringify(loginJson),
             success: successCall,
             error: errorCall
         })

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.teamViewer.userServer.exception.NoDataException;
+import com.teamViewer.userServer.model.LoginRequestModel;
+import com.teamViewer.userServer.model.SignUpRequestModel;
 import com.teamViewer.userServer.model.UserModel;
 import com.teamViewer.userServer.repository.UserRepository;
 
@@ -15,8 +17,13 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepositoy;
 
-	public void addUser(UserModel userModel){
+	public void signUp(SignUpRequestModel signUpRequestModel){
+		UserModel userModel = new UserModel(signUpRequestModel.getUserId(), signUpRequestModel.getUserPw(), signUpRequestModel.getName());
 		userRepositoy.save(userModel);
+	}
+
+	public String login(LoginRequestModel loginRequestModel) throws NoDataException {
+		return userRepositoy.findByUserIdAndUserPw(loginRequestModel.getUserId(), loginRequestModel.getUserPw()).orElseThrow(NoDataException::new).getName();
 	}
 
 	public UserModel findByUserId(String id) throws NoDataException {

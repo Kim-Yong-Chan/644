@@ -13,4 +13,5 @@ JpaRepository<Entity, 기본키 타입> 을 extends하면 기본적인 Create, R
 public interface UserRepository extends JpaRepository<UserModel, String> {
 	public Optional<UserModel> findByUserId(String userId);
 	public Optional<UserModel> findByName(String name);
+	public Optional<UserModel> findByUserIdAndUserPw(String userId, String userPw);
 }

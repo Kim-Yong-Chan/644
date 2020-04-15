@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teamViewer.userServer.exception.NoDataException;
+import com.teamViewer.userServer.model.LoginRequestModel;
+import com.teamViewer.userServer.model.SignUpRequestModel;
 import com.teamViewer.userServer.model.UserModel;
 import com.teamViewer.userServer.services.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -39,9 +41,17 @@ public class UserController {
 	/*issue#7 추측가능한 url 제거*/
 	@ResponseBody
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String addUsers(@RequestBody UserModel usermodel){
-		log.info("update " + usermodel.getUserId());
-		userService.addUser(usermodel);
+	public String addUsers(@RequestBody SignUpRequestModel signUpRequestModel){
+		log.info("signup " + signUpRequestModel.getUserId());
+		userService.signUp(signUpRequestModel);
+		return "ok";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@RequestBody LoginRequestModel loginRequestModel) throws NoDataException {
+		log.info("login " + loginRequestModel.getUserId());
+		String res = userService.login(loginRequestModel);
 		return "ok";
 	}
 
