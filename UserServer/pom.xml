@@ -55,8 +55,32 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.12</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-client</artifactId>
+		</dependency>
+
+		<!-- Swagger -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
 		</dependency>
 
 		<!-- lombok 은 자바에서 클래스를 생성할 때 보통 반복적으로 적게되는 ToString, Getter, Setter, 등을 Annotation 하나로 간단히 처리.!-->
@@ -108,14 +132,26 @@
             <artifactId>jquery</artifactId>
             <version>3.4.1</version>
         </dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.23.1-GA</version>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.6.1</version>
+			<configuration>
+				<source>1.8</source>
+				<target>1.8</target>
+			</configuration>
+		</plugin>
+	</plugins>
 	</build>
 
 </project>
