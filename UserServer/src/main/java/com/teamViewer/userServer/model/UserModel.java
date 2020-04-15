@@ -34,6 +34,7 @@ public class UserModel {
 	}
 
 	public UserModel() {
+
 	}
 
 	public String getName() {
