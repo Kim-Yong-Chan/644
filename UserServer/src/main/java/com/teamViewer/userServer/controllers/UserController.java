@@ -47,9 +47,8 @@ public class UserController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public UserModel findById(@PathVariable("id") String id) throws NoDataException {
-			Optional<UserModel> optional = userService.findByUserId(id);
-			/*issue#5 lambda식을 활용*/
-			return optional.orElseThrow(NoDataException::new);
+		log.debug("get ID");
+		return userService.findByUserId(id);
 	}
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)

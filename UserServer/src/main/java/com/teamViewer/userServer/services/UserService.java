@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.teamViewer.userServer.exception.NoDataException;
 import com.teamViewer.userServer.model.UserModel;
 import com.teamViewer.userServer.repository.UserRepository;
 
@@ -18,8 +19,9 @@ public class UserService {
 		userRepositoy.save(userModel);
 	}
 
-	public Optional<UserModel> findByUserId(String id){
-		return userRepositoy.findByUserId(id);
+	public UserModel findByUserId(String id) throws NoDataException {
+		/*issue#5 lambda식을 활용*/
+		return userRepositoy.findByUserId(id).orElseThrow(NoDataException::new);
 	}
 
 	public Optional<UserModel> findByName(String name){
