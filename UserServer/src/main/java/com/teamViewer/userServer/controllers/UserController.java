@@ -15,15 +15,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teamViewer.userServer.exception.NoDataException;
+import com.teamViewer.userServer.model.LoginRequestModel;
+import com.teamViewer.userServer.model.SignUpRequestModel;
 import com.teamViewer.userServer.model.UserModel;
 import com.teamViewer.userServer.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin("**")
 @RequestMapping("/users")
 @RestController
 @ControllerAdvice
@@ -36,17 +39,26 @@ public class UserController {
 	UserModel users;
 
 	/*issue#7 추측가능한 url 제거*/
+	@ResponseBody
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public void addUsers(@RequestBody UserModel usermodel){
-		log.debug("update");
-		userService.addUser(usermodel);
+	public String addUsers(@RequestBody SignUpRequestModel signUpRequestModel){
+		log.info("signup " + signUpRequestModel.getUserId());
+		userService.signUp(signUpRequestModel);
+		return "ok";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@RequestBody LoginRequestModel loginRequestModel) throws NoDataException {
+		log.info("login " + loginRequestModel.getUserId());
+		String res = userService.login(loginRequestModel);
+		return "ok";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public UserModel findById(@PathVariable("id") String id) throws NoDataException {
-			Optional<UserModel> optional = userService.findByUserId(id);
-			/*issue#5 lambda식을 활용*/
-			return optional.orElseThrow(NoDataException::new);
+		log.debug("get ID");
+		return userService.findByUserId(id);
 	}
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)

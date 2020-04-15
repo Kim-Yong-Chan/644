@@ -12,9 +12,9 @@ eureka:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: root
-    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
-    username: root
+    password: a1b2c3d4
+    url: jdbc:mysql://db-test2.cria4byvgcl8.ap-northeast-2.rds.amazonaws.com:3306/db-test2?serverTimezone=UTC
+    username: admin
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -22,3 +22,17 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+
+#spring:
+#  datasource:
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    password: a1b2c3d4e5
+#    url: jdbc:mysql://localhost:3306/sixfourfour?serverTimezone=UTC
+#    username: root
+#  jpa:
+#    database: mysql
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: create
+#    show-sql: true
