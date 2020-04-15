@@ -17,7 +17,7 @@
   	
 	<properties>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    	<start-class>com.teamViewer.eurekaServer.EurekaServerApplication</start-class>
+    	<start-class>com.com.teamViewer.eurekaServer.EurekaServerApplication</start-class>
     	<java.version>1.8</java.version>
     	<docker.image.name>teamViewer/eurekasvr</docker.image.name>
     	<docker.image.tag>teamViewer</docker.image.tag>
