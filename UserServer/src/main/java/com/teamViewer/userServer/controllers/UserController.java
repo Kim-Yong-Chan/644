@@ -41,7 +41,7 @@ public class UserController {
 	/*issue#7 추측가능한 url 제거*/
 	@ResponseBody
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String addUsers(@RequestBody SignUpRequestModel signUpRequestModel){
+	public String signUp(@RequestBody SignUpRequestModel signUpRequestModel){
 		log.info("signup " + signUpRequestModel.getUserId());
 		userService.signUp(signUpRequestModel);
 		return "ok";
