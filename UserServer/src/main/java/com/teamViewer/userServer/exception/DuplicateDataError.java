@@ -1,4 +1,7 @@
 package com.teamViewer.userServer.exception;
 
-public class DuplicateDataError {
+import com.teamViewer.userServer.model.UserModel;
+
+public class DuplicateDataError extends Exception {
+
 }
