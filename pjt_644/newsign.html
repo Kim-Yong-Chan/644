@@ -9,7 +9,7 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/foruser.js"></script>
+    <!--script src="js/foruser.js"></script-->
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.css">
@@ -166,7 +166,7 @@
 
         $.ajax({
             type: "POST",
-            url: "http://10.21.20.10:8080/users/",
+            url: "http://localhost:8080/users/",
             accept: "application/json",
             contentType: "application/json",
             dataType: 'text',
@@ -178,6 +178,7 @@
             alert("전송성공");
         }
         function errorCall() {
+            console.log(requset.responseText);
             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
  
             //alert("전송실패");
