@@ -70,8 +70,8 @@ public class MyController {
 > **@Autowired**  : 스프링 프레임워크에서 관리하는 Bean 객체와 같은 타입의 객체를 찾아서 자동으로 주입해주는 것. 해당 객체를 Bean으로 등록하지 않으면 주입해줄 수 없다.
 
 >출처: 
-[Spring 특징](https://goddaehee.tistory.com/1dd56) 
-[Spring 구현](https://wordbe.tistory.com/entry/Spring-Java-Spring-%EA%B8%B0%EB%B3%B8)
+[Spring 특징](https://goddaehee.tistory.com/1dd56) /
+[Spring 구현](https://wordbe.tistory.com/entry/Spring-Java-Spring-%EA%B8%B0%EB%B3%B8) /
 [AOP](https://goddaehee.tistory.com/154) 
   
 ## Spring Boot
@@ -97,7 +97,7 @@ public class MyController {
 	* spring-boot-starter-cache : 스프링 프레임워크에 캐싱 지원 가능
 	* spring-boot-starter-data-rest : Spring Data REST를 사용하여 간단한 REST 서비스 노출
 >출처:
-[Spring과 Spring boot 차이](https://sas-study.tistory.com/274)
+[Spring과 Spring boot 차이](https://sas-study.tistory.com/274) /
 [Spring boot 장정](https://ellune.tistory.com/38)
 
 ## MVC
@@ -137,8 +137,8 @@ public class MyController {
 
 
 출처:
-[MSA 제대로 이해하기(1)](https://velog.io/@tedigom/MSA-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-1-MSA%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90-3sk28yrv0e) - MSA 기본 개념
-[MSA 제대로 이해하기(2)](https://velog.io/@tedigom/MSA-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-2-MSA-Outer-Architecure) - 아키텍처 개요
+[MSA 제대로 이해하기(1)](https://velog.io/@tedigom/MSA-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-1-MSA%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90-3sk28yrv0e) - MSA 기본 개념 /
+[MSA 제대로 이해하기(2)](https://velog.io/@tedigom/MSA-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-2-MSA-Outer-Architecure) - 아키텍처 개요 /
 [MSA 제대로 이해하기(3)](https://velog.io/@tedigom/MSA-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-3API-Gateway-nvk2kf0zbj) - API Gateway
 #### 제작
 [stackedit](https://stackedit.io/app#)
