@@ -17,7 +17,7 @@ public class ChatController {
         return "ok";
     }
 
-    @GetMapping("/{roomid}")
+    @GetMapping("/{roomId}")
     public String getChat(@PathVariable String roomId){
         chatService.findByRoomId(roomId);
         return "ok";
