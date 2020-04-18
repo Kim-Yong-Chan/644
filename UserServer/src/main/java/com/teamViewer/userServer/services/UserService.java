@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.teamViewer.userServer.exception.DuplicateDataError;
 import com.teamViewer.userServer.exception.NoDataException;
 import com.teamViewer.userServer.model.LoginRequestModel;
 import com.teamViewer.userServer.model.SignUpRequestModel;
@@ -17,9 +18,13 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepositoy;
 
-	public void signUp(SignUpRequestModel signUpRequestModel){
+	public void signUp(SignUpRequestModel signUpRequestModel) throws DuplicateDataError {
 		UserModel userModel = new UserModel(signUpRequestModel.getUserId(), signUpRequestModel.getUserPw(), signUpRequestModel.getName());
+		/*Id 값이 중복되면 Error 발생*/
+		if(userRepositoy.findByUserId(signUpRequestModel.getUserId()).isPresent()) throw new DuplicateDataError();
+		/*Id 값이 중복되지 않으면 추가*/
 		userRepositoy.save(userModel);
+
 	}
 
 	public String login(LoginRequestModel loginRequestModel) throws NoDataException {
