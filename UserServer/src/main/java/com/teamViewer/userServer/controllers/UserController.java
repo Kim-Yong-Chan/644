@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.teamViewer.userServer.exception.DuplicateDataError;
 import com.teamViewer.userServer.exception.NoDataException;
 import com.teamViewer.userServer.model.LoginRequestModel;
+import com.teamViewer.userServer.model.LoginResponseModel;
 import com.teamViewer.userServer.model.SignUpRequestModel;
 import com.teamViewer.userServer.model.UserModel;
 import com.teamViewer.userServer.services.UserService;
@@ -50,10 +51,11 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestBody LoginRequestModel loginRequestModel) throws NoDataException {
+	public LoginResponseModel login(@RequestBody LoginRequestModel loginRequestModel) throws NoDataException {
 		log.info("login " + loginRequestModel.getUserId());
-		String res = userService.login(loginRequestModel);
-		return "ok";
+		users =  userService.login(loginRequestModel);
+		LoginResponseModel res = new LoginResponseModel(users);
+		return res;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

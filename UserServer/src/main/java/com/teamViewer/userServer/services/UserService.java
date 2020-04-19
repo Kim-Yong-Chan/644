@@ -27,8 +27,8 @@ public class UserService {
 
 	}
 
-	public String login(LoginRequestModel loginRequestModel) throws NoDataException {
-		return userRepositoy.findByUserIdAndUserPw(loginRequestModel.getUserId(), loginRequestModel.getUserPw()).orElseThrow(NoDataException::new).getName();
+	public UserModel login(LoginRequestModel loginRequestModel) throws NoDataException {
+		return userRepositoy.findByUserIdAndUserPw(loginRequestModel.getUserId(), loginRequestModel.getUserPw()).orElseThrow(NoDataException::new);
 	}
 
 	public UserModel findByUserId(String id) throws NoDataException {
