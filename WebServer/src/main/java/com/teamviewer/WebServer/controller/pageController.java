@@ -1,16 +1,17 @@
 package com.teamviewer.WebServer.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.teamviewer.WebServer.client.LoginClient;
 import com.teamviewer.WebServer.model.LoginRequestModel;
+import com.teamviewer.WebServer.model.LoginResponseModel;
+import com.teamviewer.WebServer.model.UserInfoModel;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -20,6 +21,9 @@ public class pageController {
 	@Autowired
 	private LoginClient loginClient;
 
+	@Resource
+	private UserInfoModel userInfoModel;
+
 	@RequestMapping("/login")
 	public String loginPage(){
 		log.debug("login");
@@ -28,6 +32,7 @@ public class pageController {
 	@RequestMapping("/main")
 	public String mainPage(){
 		log.debug("main");
+		if(userInfoModel.getName() == null || userInfoModel.getUserId() == null) return "redirect:login";
 		return "mainPage.html";
 	}
 
@@ -37,12 +42,12 @@ public class pageController {
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
 		log.debug("login.do");
-		System.out.println("login");
 		try{
-			loginClient.login(new LoginRequestModel(userId, userPw));
+			LoginResponseModel loginResponseModel = loginClient.login(new LoginRequestModel(userId, userPw));
+			userInfoModel.setUserId(loginResponseModel.getUserId());
+			userInfoModel.setName(loginResponseModel.getName());
 		}catch (Exception e){
 			log.debug(e.toString());
-			System.out.println(e.toString());
 			return "redirect:login";
 		}
 		return "redirect:main";

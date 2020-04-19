@@ -8,4 +8,8 @@ import lombok.Setter;
 public class LoginResponseModel {
 	String userId;
 	String name;
+
+	public LoginResponseModel(String _userId, String _name) {
+		userId = _userId; name = _name;
+	}
 }

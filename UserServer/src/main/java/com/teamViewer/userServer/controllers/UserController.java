@@ -54,7 +54,7 @@ public class UserController {
 	public LoginResponseModel login(@RequestBody LoginRequestModel loginRequestModel) throws NoDataException {
 		log.info("login " + loginRequestModel.getUserId());
 		users =  userService.login(loginRequestModel);
-		LoginResponseModel res = new LoginResponseModel(users);
+		LoginResponseModel res = new LoginResponseModel(users.getUserId() , users.getName());
 		return res;
 	}
 

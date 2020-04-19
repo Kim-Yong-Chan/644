@@ -9,8 +9,7 @@ public class LoginResponseModel {
 	String userId;
 	String name;
 
-	public LoginResponseModel(UserModel users) {
-		userId = users.getUserId();
-		name = users.getName();
+	public LoginResponseModel(String _userId, String _name) {
+		userId = _userId; name = _name;
 	}
 }

@@ -90,6 +90,12 @@
 			<version>1.7.25</version>
 		</dependency>
 
+		<!-- 세션의존성 추가 -->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-core</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
