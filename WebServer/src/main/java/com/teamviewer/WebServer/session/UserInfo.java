@@ -1,4 +1,4 @@
-package com.teamviewer.WebServer.model;
+package com.teamviewer.WebServer.session;
 
 import java.io.Serializable;
 
@@ -17,7 +17,7 @@ import lombok.ToString;
 @Setter
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @ToString
-public class UserInfoModel implements Serializable {
+public class UserInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String userId;

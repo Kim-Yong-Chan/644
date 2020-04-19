@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.teamviewer.WebServer.client.LoginClient;
 import com.teamviewer.WebServer.model.LoginRequestModel;
 import com.teamviewer.WebServer.model.LoginResponseModel;
-import com.teamviewer.WebServer.model.UserInfoModel;
+import com.teamviewer.WebServer.session.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -22,7 +22,7 @@ public class pageController {
 	private LoginClient loginClient;
 
 	@Resource
-	private UserInfoModel userInfoModel;
+	private UserInfo userInfo;
 
 	@RequestMapping("/login")
 	public String loginPage(){
@@ -32,7 +32,7 @@ public class pageController {
 	@RequestMapping("/main")
 	public String mainPage(){
 		log.debug("main");
-		if(userInfoModel.getName() == null || userInfoModel.getUserId() == null) return "redirect:login";
+		if(userInfo.getName() == null || userInfo.getUserId() == null) return "redirect:login";
 		return "mainPage.html";
 	}
 
@@ -44,8 +44,8 @@ public class pageController {
 		log.debug("login.do");
 		try{
 			LoginResponseModel loginResponseModel = loginClient.login(new LoginRequestModel(userId, userPw));
-			userInfoModel.setUserId(loginResponseModel.getUserId());
-			userInfoModel.setName(loginResponseModel.getName());
+			userInfo.setUserId(loginResponseModel.getUserId());
+			userInfo.setName(loginResponseModel.getName());
 		}catch (Exception e){
 			log.debug(e.toString());
 			return "redirect:login";
