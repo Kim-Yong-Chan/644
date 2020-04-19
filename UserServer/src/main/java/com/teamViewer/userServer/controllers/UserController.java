@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.teamViewer.userServer.exception.DuplicateDataError;
 import com.teamViewer.userServer.exception.NoDataException;
 import com.teamViewer.userServer.model.LoginRequestModel;
 import com.teamViewer.userServer.model.SignUpRequestModel;
@@ -41,7 +42,7 @@ public class UserController {
 	/*issue#7 추측가능한 url 제거*/
 	@ResponseBody
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String addUsers(@RequestBody SignUpRequestModel signUpRequestModel){
+	public String signUp(@RequestBody SignUpRequestModel signUpRequestModel) throws DuplicateDataError {
 		log.info("signup " + signUpRequestModel.getUserId());
 		userService.signUp(signUpRequestModel);
 		return "ok";
@@ -71,7 +72,7 @@ public class UserController {
 
 	/*Exception Handler*/
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(value = NoDataException.class)
+	@ExceptionHandler(value = {NoDataException.class, DuplicateDataError.class})
 	public String userErrorHandler(Exception e){
 		/*issue#6  HTTP Status Code 활용*/
 		return e.toString();
