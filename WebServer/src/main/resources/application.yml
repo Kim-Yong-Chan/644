@@ -3,6 +3,13 @@ server:
   servlet:
     session:
       timeout: 30s
+  thymeleaf:
+    cache: false
+    check-template-location: true
+    mode: HTML5
+    order: 0
+    prefix: classpath:templates/
+    suffix: .html
 eureka:
   instance:
     prefer-ip-address: true

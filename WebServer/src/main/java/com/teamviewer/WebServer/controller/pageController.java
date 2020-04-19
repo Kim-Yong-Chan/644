@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,10 +30,14 @@ public class pageController {
 		log.debug("login");
 		return "login.html";
 	}
+
+	/*model을 이용하여 thymeleaf 사용*/
 	@RequestMapping("/main")
-	public String mainPage(){
+	public String mainPage(Model model){
 		log.debug("main");
 		if(userInfo.getName() == null || userInfo.getUserId() == null) return "redirect:login";
+		model.addAttribute("name", userInfo.getName());
+		model.addAttribute("userId", userInfo.getUserId());
 		return "mainPage.html";
 	}
 
