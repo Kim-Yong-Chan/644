@@ -16,9 +16,9 @@ import lombok.Setter;
 public class UserModel {
 	/*@Id를 이용하여 기본 키 설정*/
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY) // Auto IncId Generator
-	private int num;
-	/*@Column을 이용하여 데이터 베이스 컬럼 설정*/
+	//@GeneratedValue(strategy= GenerationType.IDENTITY) // Auto IncId Generator
+	//private int num;
+	/*@Column을 이용하여 데이터베이스 컬럼 설정*/
 	@Column
 	private String userId;
 	@Column
