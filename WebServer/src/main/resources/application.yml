@@ -3,6 +3,7 @@ server:
   servlet:
     session:
       timeout: 30s
+spring:
   thymeleaf:
     cache: false
     check-template-location: true
