@@ -30,46 +30,46 @@
         </form>
 
         <button id="signUpBtn" class="btn">회원가입</button>
-        <div class="modal fade" id="testModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">회원가입</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">X</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label>이름</label><input type="text" id="s_name" class="form-control"
-                        placeholder="이름을 입력하세요"><br>
-                    <label>아이디</label><input type="text" id="s_id" class="form-control"
-                        placeholder="아이디를 입력하세요"><br>
-                    <label>비밀번호</label> <input type="password" name="userPwd" id="pwd1"
-                        class="form-control" placeholder="비밀번호를 입력하세요" required /> <br>
-                    <label>비밀번호 확인</label> <input type="password" name="reuserPwd" id="pwd2"
-                        class="form-control" placeholder="비밀번호를 재입력하세요" required /> <br>
-                    <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
-                    <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>​
-                </div>
-                <div class="modal-footer">
-                    <a class="btn" id="modalY" href="#">가입</a>
-                    <button class="btn" type="button" data-dismiss="modal">취소</button>
+        <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">회원가입</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label>이름</label><input type="text" id="s_name" class="form-control"
+                            placeholder="이름을 입력하세요"><br>
+                        <label>아이디</label><input type="text" id="s_id" class="form-control"
+                            placeholder="아이디를 입력하세요"><br>
+                        <label>비밀번호</label> <input type="password" name="userPwd" id="pwd1" class="form-control"
+                            placeholder="비밀번호를 입력하세요" required /> <br>
+                        <label>비밀번호 확인</label> <input type="password" name="reuserPwd" id="pwd2" class="form-control"
+                            placeholder="비밀번호를 재입력하세요" required /> <br>
+                        <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+                        <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>​
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn" id="modalY" href="#">가입</a>
+                        <button class="btn" type="button" data-dismiss="modal">취소</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 </body>
 
 <script>
-    function checkBlank(){ //submit(로그인버튼) 누르기 전에 공백체크 formdata
-        if($("#loginID").val()===""){
+    function checkBlank() { //submit(로그인버튼) 누르기 전에 공백체크 formdata
+        if ($("#loginID").val() === "") {
             alert("아이디를 입력하세요");
             $("#loginID").focus();
             return false;
         }
-        else if($("#loginPW").val()===""){
+        else if ($("#loginPW").val() === "") {
             alert("비밀번호를 입력하세요");
             $("#loginPW").focus();
             return false;
@@ -130,9 +130,9 @@
 
         var signupObj = new Object();
 
-        signupObj.name =sName;
+        signupObj.name = sName;
         signupObj.userId = sID;
-        signupObj.userPw= sPW1;
+        signupObj.userPw = sPW1;
 
         $.ajax({
             type: "POST",
@@ -149,12 +149,13 @@
         }
         function errorCall() {
             console.log(requset.responseText);
-            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
- 
+            alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+
             //alert("전송실패");
         }
 
 
     });
 </script>
+
 </html>
