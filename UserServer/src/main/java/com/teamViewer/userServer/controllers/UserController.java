@@ -1,7 +1,13 @@
 package com.teamViewer.userServer.controllers;
 
+import java.util.IllegalFormatException;
+import java.util.Optional;
+import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,8 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teamViewer.userServer.exception.DuplicateDataError;
 import com.teamViewer.userServer.exception.NoDataException;
-import com.teamViewer.userServer.model.loginRequestModel;
-import com.teamViewer.userServer.model.signUpRequestModel;
+import com.teamViewer.userServer.model.LoginRequestModel;
+import com.teamViewer.userServer.model.SignUpRequestModel;
 import com.teamViewer.userServer.model.UserModel;
 import com.teamViewer.userServer.services.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +42,7 @@ public class UserController {
 	/*issue#7 추측가능한 url 제거*/
 	@ResponseBody
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String signUp(@RequestBody signUpRequestModel signUpRequestModel) throws DuplicateDataError {
+	public String signUp(@RequestBody SignUpRequestModel signUpRequestModel) throws DuplicateDataError {
 		log.info("signup " + signUpRequestModel.getUserId());
 		userService.signUp(signUpRequestModel);
 		return "ok";
@@ -44,7 +50,7 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestBody loginRequestModel loginRequestModel) throws NoDataException {
+	public String login(@RequestBody LoginRequestModel loginRequestModel) throws NoDataException {
 		log.info("login " + loginRequestModel.getUserId());
 		String res = userService.login(loginRequestModel);
 		return "ok";
