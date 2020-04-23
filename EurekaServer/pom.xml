@@ -14,14 +14,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>EurekaServer</name>
 	<description>Demo project for Spring Boot</description>
-  	
-	<properties>
-    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    	<start-class>com.teamViewer.eurekaServer.EurekaServerApplication</start-class>
-    	<java.version>1.8</java.version>
-    	<docker.image.name>teamViewer/eurekasvr</docker.image.name>
-    	<docker.image.tag>teamViewer</docker.image.tag>
-  	</properties>
 
 	<dependencyManagement>
 		<dependencies>
@@ -49,8 +41,29 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>com.sun.xml.fastinfoset</groupId>
+            <artifactId>FastInfoset</artifactId>
+            <version>1.2.16</version>
+        </dependency>
 
-  	</dependencies>
+
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -59,6 +72,15 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>application*.yml</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 
 </project>

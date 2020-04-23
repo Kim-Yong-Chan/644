@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>side_navigation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <style>
+        /* 사이드바 스타일 */
+        .sidenav {
+            padding-top: 50px;
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 50px;
+            left: 0;
+            background-color: rgb(0, 154, 200);
+            overflow-x: hidden;
+            transition: 0.5s ease-in-out;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #fff;
+            display: block;
+            transition: 0.2s ease-in-out;
+        }
+
+        .sidenav a:hover,
+        .offcanvas a:focus {
+            color: #000;
+        }
+
+        .closebtn {
+            position: absolute;
+            top: 0;
+            right: 0px;
+            font-size: 20px !important;
+            margin-left: 50px;
+        }
+
+        .openmenu:hover {
+            color: rgb(0, 154, 200);
+            transition: 0.5s ease-in-out;
+        }
+
+        .openmenu {
+            font-size: 25px;
+            cursor: pointer;
+            transition: 0.5s ease-in-out;
+        }
+
+        .openmenu>i {
+            font-size: 60px;
+        }
+
+        #main {
+            transition: 0.5s ease-in-out;
+        }
+
+        /* 미디어쿼리 적용 */
+        @media screen and (max-height:450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+    </style>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        #container {
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tab {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* Float the list items side by side */
+        .tab li {
+            float: left;
+        }
+
+        /* Style the links inside the list items */
+        .tab li a {
+            display: inline-block;
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px 16px;
+            font-size: 17px;
+            transition: 0.3s;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            background-color: rgb(0, 154, 200);
+            padding: 2px 12px;
+            color: #fff;
+        }
+
+        ul.tab li.current {
+            background-color: rgb(0, 154, 200);
+            color: #222;
+        }
+
+        .tabcontent.current {
+            display: block;
+        }
+
+        aside {
+            float: left;
+            width: 50px;
+            height: 100%;
+        }
+
+        header {
+            width: 100%;
+
+        }
+        #enterRoom{
+            font-size: 38px;
+        }
+        #createRoom{
+            font-size: 38px;
+        }
+    </style>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <!--툴바-->
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Cooperatool</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 이름 뜨게 해야댐</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div id="mysidenav" class="sidenav">
+        <a href="#" class="closebtn" onclick='closeNav()'>x</a>
+        <a href="#">사용자 목록</a>
+        <a href="#">채팅</a>
+	</div>
+   
+    <aside>
+        <span class="openmenu" onclick='openNav()'><i class="fa fa-angle-double-right fa-5" aria-hidden="true"></i>
+        </span>
+        <br>
+        <a href="#"><span id="createRoom" class="glyphicon glyphicon-plus"></span>
+        <br>
+		<a href="#"><span id="enterRoom" class="glyphicon glyphicon-log-in"></span>
+
+    </aside>
+
+
+    <div id="main">
+        <div id="container">
+            <ul class="tab">
+                <li class="current" data-tab="tab1"><a href="#">Source Code</a></li>
+                <li data-tab="tab2"><a href="#">Paint</a></li>
+            </ul>
+			<br>
+			<input type="text" id="testinput">
+			<input type="button" id="testbtn" value="test">
+            <div id="tab1" class="tabcontent current">
+                <p><textarea style="width:100%" rows="30"></textarea></p>
+            </div>
+
+            <div id="tab2" class="tabcontent">
+                <h3>Portfolio</h3>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+                    classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
+                    professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
+                    consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical
+                    literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33
+                    of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This
+                    book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of
+                    Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+            </div>
+        </div>
+        <!--방 생성 모달-->
+        <div class="modal fade" id="r_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">방 생성</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label>방 제목</label><input type="text" id="r_name" class="form-control"
+                            placeholder="방 제목을 입력하세요"><br>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn" id="c_modalY" href="#">생성</a>
+                        <button class="btn" type="button" data-dismiss="modal">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--방 입장 모달-->
+        <div class="modal fade" id="r_enter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">방 참여</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label>입장 코드</label><input type="text" id="e_code" class="form-control"
+                            placeholder="입장코드을 입력하세요"><br>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn" id="e_modalY" href="#">입장</a>
+                        <button class="btn" type="button" data-dismiss="modal">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById('mysidenav').style.width = '250px';
+            document.getElementById('main').style.marginLeft = '250px';
+        }
+        function closeNav() {
+            document.getElementById('mysidenav').style.width = '0';
+            document.getElementById('main').style.marginLeft = '0';
+        }
+        $(function () {
+            $('ul.tab li').click(function () {
+                var activeTab = $(this).attr('data-tab');
+                $('ul.tab li').removeClass('current');
+                $('.tabcontent').removeClass('current');
+                $(this).addClass('current');
+                $('#' + activeTab).addClass('current');
+            })
+        });
+
+        $('#createRoom').click(function(e){ // 방 생성 모달
+            e.preventDefault();
+            $('#r_create').modal("show");
+        });
+
+        $("#c_modalY").click(function(){
+            var rName = $("#r_name").val();
+            if(rName ===""){
+                alert("방 제목을 입력하세요");
+                $("r_name").focus();
+                return;
+            }
+            //JSON 으로 ID 랑 Roomname 넘겨줘야함
+            $.ajax({
+                type:"POST",
+                url : "http://localhost:8080/rooms",
+                accept : "application/json",
+                contentType : "application/json",
+                dataType : 'text',
+                data: data,
+                success: successRoomCreate,
+                error : errorRoomCreate
+            })
+            function successRoomCreate(){
+                alert("방 생성을 성공하였습니다.");
+            }
+            function errorRoomCreate(){
+                alert("방 생성을 실패하였습니다.")
+            }
+        });
+
+        $("#enterRoom").click(function(e){ // 방 입장 모달
+            e.preventDefault();
+            $('#r_enter').modal("show");
+        });
+
+        $("#e_modalY").click(function(){
+            var eName = $('#e_code').val();
+            if(eName ===""){
+                alert("입장 코드를 입력하세요");
+                $("e_code").focus();
+                return;
+            }
+            // JSON 으로 ID 랑 입장 코드 보내줘야함
+            $.ajax({
+
+            });
+		});
+		
+		$("#testbtn").click(function(){
+			$(".sidenav").append('<a href="#">'+$('#testinput').val()+'</a>');
+		});
+    </script>
+</body>
+
+</html>

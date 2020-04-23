@@ -3,6 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/644.iml" filepath="$PROJECT_DIR$/.idea/644.iml" />
+<<<<<<< HEAD
+=======
+      <module fileurl="file://$PROJECT_DIR$/EurekaServer/EurekaServer.iml" filepath="$PROJECT_DIR$/EurekaServer/EurekaServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UserServer/UserServer.iml" filepath="$PROJECT_DIR$/UserServer/UserServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RoomServer/roomserver.iml" filepath="$PROJECT_DIR$/RoomServer/roomserver.iml" />
+>>>>>>> 9af5888a738d1b4d0805786719749757af36a7cd
     </modules>
   </component>
 </project>
