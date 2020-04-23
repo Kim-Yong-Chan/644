@@ -1,4 +1,4 @@
-package com.teamViewer.zuulServer;
+package com.teamViewer.SignalingServer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
