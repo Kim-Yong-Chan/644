@@ -57,6 +57,7 @@
 
         peerConnection.onaddstream = function(event) {
             document.querySelector('video').srcObject = event.stream;
+            //videoElement=Document.createElement('video');
             //videoElement.srcObject = event.stream;
         };
 

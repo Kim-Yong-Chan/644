@@ -147,6 +147,7 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/RTCConnection.js"></script>
 </head>
 
 <body>
@@ -250,10 +251,14 @@
             </div>
         </div>
     </div>
+    <button type="button" class="btn btn-primary" onclick='createOffer()'>Create
+        Offer</button>
 
-    <button class="useMIC" type="button" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">X</span>
+    <button name="useMIC" type="button" onclick="onUserMedia()">
+        음성 입력 허용
     </button>
+
+    <video controls autoplay style="visibility:collapse" ></video>
 
 </div>
 
