@@ -1,5 +1,5 @@
 
-   var conn = new WebSocket('ws://10.14.4.197:8200/socket');
+   var conn = new WebSocket('ws://localhost:8200/socket');
 
    conn.onopen = function() {
        console.log("Connected to the signaling server");
@@ -57,6 +57,7 @@
 
         peerConnection.onaddstream = function(event) {
             document.querySelector('video').srcObject = event.stream;
+            //videoElement=Document.createElement('video');
             //videoElement.srcObject = event.stream;
         };
 
@@ -153,4 +154,6 @@
         }).catch(function(err){
       });
    };
+
+
 

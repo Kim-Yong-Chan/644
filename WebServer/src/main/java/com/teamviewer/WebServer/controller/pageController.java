@@ -47,12 +47,14 @@ public class pageController {
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
 		log.debug("login.do");
+		System.out.println(userId+" "+userPw);
 		try{
 			LoginResponseModel loginResponseModel = loginClient.login(new LoginRequestModel(userId, userPw));
 			userInfo.setUserId(loginResponseModel.getUserId());
 			userInfo.setName(loginResponseModel.getName());
 		}catch (Exception e){
 			log.debug(e.toString());
+			System.out.println(e.toString());
 			return "redirect:login";
 		}
 		return "redirect:main";

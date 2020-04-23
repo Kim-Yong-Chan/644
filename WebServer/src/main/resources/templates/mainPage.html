@@ -1,27 +1,35 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
-    <title>Cooperatool</title>
+    <title>side_navigation</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="js/RTCConnection.js"></script>
     <style>
         /* 사이드바 스타일 */
         .sidenav {
-            padding-top: 50px;
+
             height: 100%;
             width: 0;
             position: fixed;
             z-index: 1;
             top: 50px;
             left: 0;
-            background-color: rgb(0, 154, 200);
+            background-color: rgb(44, 44, 44);
             overflow-x: hidden;
             transition: 0.5s ease-in-out;
-            padding-top: 60px;
+
         }
 
         .sidenav a {
@@ -47,23 +55,27 @@
         }
 
         .openmenu:hover {
-            color: rgb(0, 154, 200);
+            color: rgb(200, 200, 200);
             transition: 0.5s ease-in-out;
         }
 
         .openmenu {
-            font-size: 25px;
+            color:rgb(100, 100, 100);
             cursor: pointer;
             transition: 0.5s ease-in-out;
         }
 
         .openmenu>i {
-            font-size: 60px;
+            font-size: 40px;
+        }
+        .openmenu>enterRoom{
+            font-size: 23px;
+        }
+        .openmenu>createRoom{
+            font-size: 20px;
         }
 
-        #main {
-            transition: 0.5s ease-in-out;
-        }
+
 
         /* 미디어쿼리 적용 */
         @media screen and (max-height:450px) {
@@ -76,78 +88,56 @@
             }
         }
     </style>
+
     <style>
-        body {
-            padding-top: 50px;
-        }
+        #code{
+            width: 70.9%;
+            height: 100%;
 
-        #container {
-            width: 800px;
-            margin: 0 auto;
-            text-align: center;
+            position: absolute;
+            top: 50px;
+            left: 40px;
+            padding-top: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            background-color: rgb(255, 255, 255);
         }
+        #chat{
+            width: 25.7%;
+            height: 100%;
 
-        .tab {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        /* Float the list items side by side */
-        .tab li {
-            float: left;
-        }
-
-        /* Style the links inside the list items */
-        .tab li a {
-            display: inline-block;
-            color: #000;
-            text-align: center;
-            text-decoration: none;
-            padding: 14px 16px;
-            font-size: 17px;
-            transition: 0.3s;
-        }
-
-        /* Style the tab content */
-        .tabcontent {
-            display: none;
-            background-color: rgb(0, 154, 200);
-            padding: 2px 12px;
-            color: #fff;
-        }
-
-        ul.tab li.current {
-            background-color: rgb(0, 154, 200);
-            color: #222;
-        }
-
-        .tabcontent.current {
-            display: block;
+            position: absolute;
+            top: 50px;
+            right: 0px;
+            padding-top: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            background-color: rgb(65, 34, 34);
         }
 
         aside {
-            float: left;
-            width: 50px;
+            position: absolute;
+            left:0px;
+            top: 50px;
+
+            padding-left: 7px;
+
+            width: 40px;
             height: 100%;
+            background-color: rgb(55, 55, 55);
         }
 
         header {
             width: 100%;
 
         }
-        #enterRoom{
-            font-size: 38px;
-        }
-        #createRoom{
-            font-size: 38px;
+        .nav-link{
+            color: rgb(100, 100, 100);
         }
     </style>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/RTCConnection.js"></script>
+
 </head>
 
 <body>
@@ -159,7 +149,7 @@
                 <a class="navbar-brand" href="#">Cooperatool</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user" th:text="|반갑습니다! ${name}님!|"></span> 이름 뜨게 해야댐</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> 이름 뜨게 해야댐</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
@@ -170,43 +160,70 @@
     <a href="#" class="closebtn" onclick='closeNav()'>x</a>
     <a href="#">사용자 목록</a>
     <a href="#">채팅</a>
+    <a href="#" onclick='onUserMedia()'>음성채팅 허용</a>
+    <a href="#" onclick='createOffer()'>음성채팅 시작</a>
 
+    <video controls autoplay style="visibility:collapse" ></video>
 </div>
+
+
+<div id="code">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#source">Source Code</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#board">Board</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#calendar">Calendar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#db">Database</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#paint">Paint</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="source">
+            <p>source</p>
+        </div>
+        <div class="tab-pane fade" id="board">
+            <p>board</p>
+        </div>
+        <div class="tab-pane fade" id="calendar">
+            <p>calendar</p>
+        </div>
+        <div class="tab-pane fade" id="db">
+            <p>database</p>
+        </div>
+        <div class="tab-pane fade" id="paint">
+            <p>paint</p>
+        </div>
+    </div>
+</div>
+<div id="chat">
+    <p><textarea style="width:100%" rows="30"></textarea></p>
+</div>
+
 <aside>
         <span class="openmenu" onclick='openNav()'><i class="fa fa-angle-double-right fa-5" aria-hidden="true"></i>
         </span>
     <br>
-    <a href="#"><span id="createRoom" class="glyphicon glyphicon-plus"></span>
-        <br>
-        <a href="#"><span id="enterRoom" class="glyphicon glyphicon-log-in"></span>
+    <br>
+    <span class="openmenu" onclick='openNav()'><enterRoom class="glyphicon glyphicon-plus" aria-hidden="true"></enterRoom>
+        </span>
+    <br>
+    <br>
+    <span class="openmenu" onclick='openNav()'><createRoom class="glyphicon glyphicon-log-in" aria-hidden="true"></createRoom>
+
 </aside>
 
 
+
 <div id="main">
-    <div id="container">
-        <ul class="tab">
-            <li class="current" data-tab="tab1"><a href="#">Source Code</a></li>
-            <li data-tab="tab2"><a href="#">Paint</a></li>
-        </ul>
-
-        <div id="tab1" class="tabcontent current">
-            <p><textarea style="width:100%" rows="30"></textarea></p>
-        </div>
-
-        <div id="tab2" class="tabcontent">
-            <h3>Portfolio</h3>
-            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
-                professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
-                consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical
-                literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33
-                of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This
-                book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of
-                Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-        </div>
-    </div>
-    <!--방 생성 모달-->
-    <div class="modal fade" id="r_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -222,122 +239,36 @@
 
                 </div>
                 <div class="modal-footer">
-                    <a class="btn" id="c_modalY" href="#">생성</a>
+                    <a class="btn" id="modalY" href="#">생성</a>
                     <button class="btn" type="button" data-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
     </div>
-    <!--방 입장 모달-->
-    <div class="modal fade" id="r_enter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">방 참여</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">X</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label>입장 코드</label><input type="text" id="e_code" class="form-control"
-                                               placeholder="입장코드을 입력하세요"><br>
-
-                </div>
-                <div class="modal-footer">
-                    <a class="btn" id="e_modalY" href="#">입장</a>
-                    <button class="btn" type="button" data-dismiss="modal">취소</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button type="button" class="btn btn-primary" onclick='createOffer()'>Create
-        Offer</button>
-
-    <button name="useMIC" type="button" onclick="onUserMedia()">
-        음성 입력 허용
-    </button>
-
-    <video controls autoplay style="visibility:collapse" ></video>
-
 </div>
 
-<script type="text/javascript" th:inline="javascript">
-        /* <![CDATA[ */
+<script>
         function openNav() {
             document.getElementById('mysidenav').style.width = '250px';
-            document.getElementById('main').style.marginLeft = '250px';
+
         }
         function closeNav() {
             document.getElementById('mysidenav').style.width = '0';
-            document.getElementById('main').style.marginLeft = '0';
+
         }
-        $(function () {
-            $('ul.tab li').click(function () {
-                var activeTab = $(this).attr('data-tab');
-                $('ul.tab li').removeClass('current');
-                $('.tabcontent').removeClass('current');
-                $(this).addClass('current');
-                $('#' + activeTab).addClass('current');
-            })
-        });
 
         $('#createRoom').click(function(e){ // 방 생성 모달
             e.preventDefault();
-            $('#r_create').modal("show");
+            $('#testModal').modal("show");
         });
-
-        $("#c_modalY").click(function(){
-            var rName = $("#r_name").val();
-            //var userId = /*[[ ${name} ]]*/;
-            if(rName ===""){
-                alert("방 제목을 입력하세요");
-                $("r_name").focus();
-                return;
-            }
-            $(".sidenav").append('<a href="#">'+$('#r_name').val()+'</a>'); // 테스트 부분
-            alert("방 생성을 성공하였습니다.");
-            $('#r_create').modal("hide");
-            //JSON 으로 ID 랑 Roomname 넘겨줘야함
-            // $.ajax({
-            //     type:"POST",
-            //     url : "http://localhost:8080/rooms",
-            //     accept : "application/json",
-            //     contentType : "application/json",
-            //     dataType : 'text',
-            //     data: data,
-            //     success: successRoomCreate,
-            //     error : errorRoomCreate
-            // })
-            // function successRoomCreate(){
-            //     $(".sidenav").append('<a href="#">'+$('#r_name').val()+'</a>');
-            //     alert("방 생성을 성공하였습니다.");
-            // }
-            // function errorRoomCreate(){
-            //     alert("방 생성을 실패하였습니다.")
-            // }
-        });
-
-        $("#enterRoom").click(function(e){ // 방 입장 모달
-            e.preventDefault();
-            $('#r_enter').modal("show");
-        });
-
-        $("#e_modalY").click(function(){
-            var eName = $('#e_code').val();
-            if(eName ===""){
-                alert("입장 코드를 입력하세요");
-                $("e_code").focus();
-                return;
-            }
-            // JSON 으로 ID 랑 입장 코드 보내줘야함
-            $.ajax({
-
-            });
-        });
-
-        /* ]]> */
     </script>
+
+    <video controls autoplay style="visibility:collapse" ></video>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
 </body>
 
 </html>
+
+
+
