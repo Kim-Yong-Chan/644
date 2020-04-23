@@ -14,14 +14,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>EurekaServer</name>
 	<description>Demo project for Spring Boot</description>
-  	
-	<properties>
-    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    	<start-class>com.com.teamViewer.eurekaServer.EurekaServerApplication</start-class>
-    	<java.version>1.8</java.version>
-    	<docker.image.name>teamViewer/eurekasvr</docker.image.name>
-    	<docker.image.tag>teamViewer</docker.image.tag>
-  	</properties>
 
 	<dependencyManagement>
 		<dependencies>
@@ -54,11 +46,7 @@
             <artifactId>FastInfoset</artifactId>
             <version>1.2.16</version>
         </dependency>
-		<dependency>
-			<groupId>com.sun.xml.fastinfoset</groupId>
-			<artifactId>FastInfoset</artifactId>
-			<version>1.2.16</version>
-		</dependency>
+
 
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
@@ -84,6 +72,15 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>application*.yml</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 
 </project>

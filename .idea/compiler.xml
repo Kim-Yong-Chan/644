@@ -8,11 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
+        <module name="roomserver" />
         <module name="UserServer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="EurekaServer" target="1.8" />
+      <module name="roomserver" target="1.8" />
       <module name="UserServer" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -20,6 +22,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="EurekaServer" options="-parameters" />
       <module name="UserServer" options="-parameters" />
+      <module name="roomserver" options="-parameters" />
     </option>
   </component>
 </project>
