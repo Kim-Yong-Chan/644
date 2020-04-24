@@ -2,6 +2,7 @@ package com.teamViewer.roomserver.controllers;
 
 import com.teamViewer.roomserver.Exception.NoDataException;
 import com.teamViewer.roomserver.Model.Request.CreateRoomRequest;
+import com.teamViewer.roomserver.Model.Request.RoomListRequest;
 import com.teamViewer.roomserver.Model.Request.UserEnterRequest;
 import com.teamViewer.roomserver.Model.Request.UserExitRequest;
 import com.teamViewer.roomserver.Model.RoomModel;
@@ -47,24 +48,33 @@ public class RoomController {
         return "ok";
     }
 
-
-
     //방 이름, 유저 ID 받아서 방 생성하고 방 ID 리턴해주는 기능
     @ResponseBody
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@RequestBody CreateRoomRequest createRequestModel){
         roomService.createRoom(createRequestModel.getUserId(), createRequestModel.getName());
+
         return "ok";
     }
 
 
+//    //userId받아서 userId가 속해있는 방의 목록 리턴해주는 함수
+//    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+//    public List<RoomModel> roomListById(@PathVariable("userId") String userId) throws NoDataException {
+//        log.debug("get ID");
+//
+//        return roomService.getRoomList(userId);
+//
+//    }
     //userId받아서 userId가 속해있는 방의 목록 리턴해주는 함수
-    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    public List<RoomModel> roomListById(@PathVariable("userId") String userId) throws NoDataException {
+    @ResponseBody
+    @RequestMapping(value = "/roomlist", method = RequestMethod.POST)
+    public String roomList(@RequestBody RoomListRequest listRoomRequestModel) throws NoDataException {
         log.debug("get ID");
-        return roomService.getRoomList(userId);
-
+        roomService.getRoomList(listRoomRequestModel.getUserId());
+        return "성공";
     }
+
 
     //roomId받아서 room에 참가한 사용자의 목록 리턴해주는 함수
     @RequestMapping(value = "/{roomId}", method = RequestMethod.GET)

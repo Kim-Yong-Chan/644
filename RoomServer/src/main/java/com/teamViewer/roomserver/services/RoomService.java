@@ -27,28 +27,21 @@ public class RoomService {
     public void exitUser(UserExitRequest exitRequestModel) throws NoDataException{
         roomRepository.delete(roomRepository.findByRoomIdAndUserId(exitRequestModel.getRoomId(), exitRequestModel.getUserId()).orElseThrow(NoDataException::new));
     }
-    public List getRoomList(String userId) throws NoDataException{
+    public List<RoomModel> getRoomList(String userId) throws NoDataException{
         return roomRepository.findAllByUserId(userId).orElseThrow(NoDataException::new);
     }
     public List getUserList(String roomId) throws NoDataException {
         return roomRepository.findAllByRoomId(roomId).orElseThrow(NoDataException::new);
     }
 
-
-
     public String createRoom(String userId, String name) {
         //roomId생성하고(중복허용 X) roomRequestModel의 userId와 roomName을 더해서 테이블에 튜플 추가하고 id 리턴
-
         //난수생성
-        int roomId = (int) Math.random();
-        String roomIdString = Integer.toString(roomId);
 
-        while(roomRepository.findByRoomId(roomIdString).isPresent()) {
-            roomId = (int) Math.random();
-            roomIdString = Integer.toString(roomId);
-        }
 
-        RoomModel newRoom = new RoomModel(roomIdString, userId, name);
+        String roomId = new java.text.SimpleDateFormat("MMddhhmmss").format(new java.util.Date());
+
+        RoomModel newRoom = new RoomModel(roomId, userId, name);
         roomRepository.save(newRoom);
         return "성공";
     }
