@@ -24,7 +24,7 @@ public class CalendarService {
     }
 
     public String calDelete(CalendarModel calendarModel) {
-        calendarRepository.deleteByNum(calendarModel.getNum());
+        //calendarRepository.deleteByNum(calendarModel.getNum());
         return "ok";
     }
 }
