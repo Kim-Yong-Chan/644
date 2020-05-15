@@ -3,6 +3,8 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
+<<<<<<< HEAD
+=======
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -16,4 +18,5 @@
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="13" project-jdk-type="JavaSDK" />
+>>>>>>> 9af5888a738d1b4d0805786719749757af36a7cd
 </project>
