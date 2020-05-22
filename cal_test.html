@@ -159,7 +159,7 @@
             overflow: scroll;
         }
         #forSource{
-            height: 700px;
+            height: 85vh;
             width: 100%;
         }
         #editor{
@@ -167,6 +167,13 @@
             width: 100%;
         }
        
+      </style>
+      <!-- 채팅 css-->
+      <style> 
+        .panel-body {
+            overflow-y: scroll;
+            height: 790px;
+        }
       </style>
 
 </head>
@@ -277,7 +284,23 @@
           </div>
     </div>
     <div id="chat">
-        <p><textarea style="width:100%" rows="30"></textarea></p>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span> Chat
+            </div>
+            <div class="panel-body">
+                <ul class="chat"> </ul>
+            </div>
+            <div class="panel-footer">
+                <div class="input-group">
+                    <input id="msgText" type="text" class="form-control input-sm"
+                        placeholder="메세지를 입력하세요..." />
+                    <span class="input-group-btn">
+                        <button class="btn btn-warning btn-sm" id="btnSend" onclick="sendMsg()">전송</button>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <aside>
@@ -552,17 +575,47 @@
             parent.removeChild(myDiv); // 부모로부터 myDiv 객체 떼어내기
         })
     </script>
-<script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
+
+<script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script> 
+<script> // for code editor
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
 
     $('#selectedLang').change(function(){
         //alert("change "+ $("#selectedLang option:selected").val());
-        alert($('#editor').val());
+        alert("change language "+$("#selectedLang option:selected").val());
         editor.session.setMode("ace/mode/"+$("#selectedLang option:selected").val());
 
     })
+</script>
+
+<script> // for chat 
+        // $("#btnSend").click(function () {
+        //     var date = new date();
+        //     var d = date.getUTCDate();
+        //     var m = date.getMonth() + 1;
+        //     var y = date.getFullYear();
+        //     var h = date.getHours();
+        //     var min = date.getMinutes();
+
+
+        //    var Fecha = d + "/" + m + "/" + y + "  " + h + ":"+min;
+        //    alert("aa");
+        //    alert(Fecha);
+        // });
+
+        function sendMsg(){
+            var date = new Date();
+            var d = date.getUTCDate();
+            var m = date.getMonth() + 1;
+            var y = date.getFullYear();
+            var h = date.getHours();
+            var min = date.getMinutes();
+
+
+           var Fecha = d + "/" + m + "/" + y + "  " + h + ":"+min + $("#msgText").val();
+           alert(Fecha);
+        }
 </script>
 </body>
 
