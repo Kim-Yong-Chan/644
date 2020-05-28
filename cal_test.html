@@ -158,7 +158,7 @@
         body {
             overflow: scroll;
         }
-        #forSource{
+        .forSource{
             height: 85vh;
             width: 100%;
         }
@@ -216,8 +216,8 @@
 
     <div id="code">
         <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#source">Source Code</a>
+            <li class="nav-item" id="srcTab">
+              <a class="nav-link" data-toggle="tab" href="#source">Source Code</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#board">Board</a>
@@ -234,7 +234,7 @@
         </ul>
           <div class="tab-content">
             <div class="tab-pane fade show active" id="source">
-                <div id="forSource">
+                <div class="forSource">
                         언어 선택
                         <select class="selectpicker" id="selectedLang">
                             <option value="" selected disabled hidden>Choose here</option>
@@ -248,25 +248,27 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="board">
-                    <button type="button" class="btn pull-right btn-link" id="writeBoard" onclick="boardWrite()">새 게시물 작성</button>
-                    <table id = "boardList" class="table table-hover">
-                  <thead>
-                      <tr>
-                          <th>제목</th>
-                          <th>작성자</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>1번 게시물</td>
-                          <td>박성진</td>
-                      </tr>
-                      <tr>
-                          <td>2번 게시물</td>
-                          <td>계희준</td>
-                      </tr>
-                  </tbody>
-              </table>
+            
+                <button type="button" class="btn pull-right btn-link" id="writeBoard" onclick="boardWrite()">새 게시물 작성</button>
+                <table id = "boardList" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>제목</th>
+                            <th>작성자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1번 게시물</td>
+                            <td>박성진</td>
+                        </tr>
+                        <tr>
+                            <td>2번 게시물</td>
+                            <td>계희준</td>
+                        </tr>
+                    </tbody>
+                </table>
+        
             </div>
 
             <div class="tab-pane fade" id="calendar">
@@ -587,6 +589,22 @@
         editor.session.setMode("ace/mode/"+$("#selectedLang option:selected").val());
 
     })
+</script>
+<script>
+$(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+
+    $('.nav-tabs #srcTab a').on('hide.bs.tab', function(e){
+        $('.forSource').css("display","none");
+    });
+
+    $('.nav-tabs #srcTab a').on('show.bs.tab', function(e){
+        $('.forSource').css("display", "block");
+    });
+});
+
 </script>
 
 <script> // for chat 
