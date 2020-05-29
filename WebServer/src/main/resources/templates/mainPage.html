@@ -15,7 +15,13 @@
 
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script src="js/RTCConnection.js"></script>
+
+    <!-- webRTC -->
+    <!--<script src="js/RTCConnection.js"></script>-->
+    <script src="js/socket.io/socket.io.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/webrtc.js"></script>
+
     <style>
         /* 사이드바 스타일 */
         .sidenav {
@@ -160,10 +166,12 @@
     <a href="#" class="closebtn" onclick='closeNav()'>x</a>
     <a href="#">사용자 목록</a>
     <a href="#">채팅</a>
-    <a href="#" onclick='onUserMedia()'>음성채팅 허용</a>
-    <a href="#" onclick='createOffer()'>음성채팅 시작</a>
+    <!--<a href="#" onclick='onUserMedia()'>음성채팅 허용</a>-->
+    <a href="#" onclick='pageReady()'>영상통화 시작</a>
 
-    <video controls autoplay style="visibility:collapse" ></video>
+    <!--<video controls autoplay style="visibility:collapse" ></video>-->
+
+
 </div>
 
 
@@ -206,6 +214,11 @@
 <div id="chat">
     <p><textarea style="width:100%" rows="30"></textarea></p>
 </div>
+<div class="videos">
+    <div>
+        <video id="localVideo" autoplay muted playsinline ></video>
+    </div>
+</div>
 
 <aside>
         <span class="openmenu" onclick='openNav()'><i class="fa fa-angle-double-right fa-5" aria-hidden="true"></i>
@@ -247,7 +260,7 @@
     </div>
 </div>
 
-<script>
+    <script>
         function openNav() {
             document.getElementById('mysidenav').style.width = '250px';
 
@@ -263,8 +276,12 @@
         });
     </script>
 
-    <video controls autoplay style="visibility:collapse" ></video>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!--<video controls autoplay style="visibility:collapse" ></video>-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!--<script type="text/javascript">
+        pageReady();
+    </script>-->
 
 </body>
 
