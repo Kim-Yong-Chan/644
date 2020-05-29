@@ -21,8 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teamViewer.userServer.exception.DuplicateDataError;
 import com.teamViewer.userServer.exception.NoDataException;
-import com.teamViewer.userServer.model.loginRequestModel;
-import com.teamViewer.userServer.model.signUpRequestModel;
+import com.teamViewer.userServer.model.LoginRequestModel;
+import com.teamViewer.userServer.model.LoginResponseModel;
+import com.teamViewer.userServer.model.SignUpRequestModel;
 import com.teamViewer.userServer.model.UserModel;
 import com.teamViewer.userServer.services.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -42,18 +43,19 @@ public class UserController {
 	/*issue#7 추측가능한 url 제거*/
 	@ResponseBody
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String signUp(@RequestBody signUpRequestModel signUpRequestModel) throws DuplicateDataError {
-		log.info("signup " + signUpRequestModel.getUserId());
+	public String signUp(@RequestBody SignUpRequestModel signUpRequestModel) throws DuplicateDataError {
+		log.info("signup " + signUpRequestModel.getUserId()+ " / "+ signUpRequestModel.getUserPw());
 		userService.signUp(signUpRequestModel);
 		return "ok";
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestBody loginRequestModel loginRequestModel) throws NoDataException {
+	public LoginResponseModel login(@RequestBody LoginRequestModel loginRequestModel) throws NoDataException {
 		log.info("login " + loginRequestModel.getUserId());
-		String res = userService.login(loginRequestModel);
-		return "ok";
+		users =  userService.login(loginRequestModel);
+		LoginResponseModel res = new LoginResponseModel(users.getUserId() , users.getName());
+		return res;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -75,6 +77,7 @@ public class UserController {
 	@ExceptionHandler(value = {NoDataException.class, DuplicateDataError.class})
 	public String userErrorHandler(Exception e){
 		/*issue#6  HTTP Status Code 활용*/
+		log.debug("error");
 		return e.toString();
 	}
 }
