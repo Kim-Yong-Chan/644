@@ -15,7 +15,7 @@
 
 <body>
 <div>
-    <form name="login" action="http://localhost:8100/login.do" method="POST" onsubmit="return checkBlank()">
+    <form name="login" action="http://192.168.43.70:8100/login.do" method="POST" onsubmit="return checkBlank()">
         <p>
             <label>아이디</label>
             <input type="text" id="loginID" name="userId" class="form-control" placeholder="아이디를 입력하세요">
@@ -136,7 +136,7 @@
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/users/",
+            url: "http://192.168.43.70:8080/users/",
             accept: "application/json",
             contentType: "application/json",
             dataType: 'text',

@@ -4,6 +4,8 @@ var socketCount = 0;
 var socketId;
 var localStream;
 var connections = [];
+var ids = [];
+var idCount = 0;
 
 var peerConnectionConfig = {
     'iceServers': [
@@ -11,8 +13,50 @@ var peerConnectionConfig = {
         {'urls': 'stun:stun.l.google.com:19302'},
     ]
 };
+function closeVideo(){
+    localVideo.pause();
+    socket.close();
+    connections = [];
+    for(var id = 0; id < idCount; id++){
+        var video = document.querySelector('[data-socket="'+ ids[id] +'"]');
+        var parentDiv = video.parentElement;
+        video.pause();
+        video.parentElement.parentElement.removeChild(parentDiv);
+    }
+
+    idCount = 0;
+}
+
+function init(){
+    if (navigator.mediaDevices === undefined) {
+      navigator.mediaDevices = {};
+    }else return;
+
+    // Some browsers partially implement mediaDevices. We can't just assign an object
+    // with getUserMedia as it would overwrite existing properties.
+    // Here, we will just add the getUserMedia property if it's missing.
+    if (navigator.mediaDevices.getUserMedia === undefined) {
+      navigator.mediaDevices.getUserMedia = function(constraints) {
+
+        // First get ahold of the legacy getUserMedia, if present
+        var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+        // Some browsers just don't implement it - return a rejected promise with an error
+        // to keep a consistent interface
+        if (!getUserMedia) {
+          return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+        }
+
+        // Otherwise, wrap the call to the old navigator.getUserMedia with a Promise
+        return new Promise(function(resolve, reject) {
+          getUserMedia.call(navigator, constraints, resolve, reject);
+        });
+      }
+    }
+}
 
 function pageReady() {
+    init();
 
     localVideo = document.getElementById('localVideo');
     remoteVideo = document.getElementById('remoteVideo');
@@ -79,7 +123,7 @@ function pageReady() {
             }); 
     } else {
         alert('Your browser does not support getUserMedia API');
-    } 
+    }
 }
 
 function getUserMediaSuccess(stream) {
@@ -97,17 +141,21 @@ function gotRemoteStream(event, id) {
         div    = document.createElement('div')
 
     video.setAttribute('data-socket', id);
+    video.setAttribute('width', 320);
+    video.setAttribute('height', 240);
     /**This error is caused because the function createObjectURL is deprecated for Google Chrome**/
     //video.src         = window.URL.createObjectURL(event.stream);
     video.srcObject=event.stream;
     video.play();
     
     video.autoplay    = true; 
-    video.muted       = true;
+    //video.muted       = true;
     video.playsinline = true;
     
     div.appendChild(video);      
-    document.querySelector('.videos').appendChild(div);      
+    document.querySelector('.videos').appendChild(div);
+
+    ids[idCount++] = id;
 }
 
 function gotMessageFromServer(fromId, message) {

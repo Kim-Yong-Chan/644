@@ -38,7 +38,7 @@ public class pageController {
 		if(userInfo.getName() == null || userInfo.getUserId() == null) return "redirect:login";
 		model.addAttribute("name", userInfo.getName());
 		model.addAttribute("userId", userInfo.getUserId());
-		return "mainPage.html";
+		return "mainPageV2.html";
 	}
 
 	/**/
