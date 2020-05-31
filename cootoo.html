@@ -16,11 +16,16 @@
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <!---->
-    <link href='../gg/644/hwa/@fullcalendar/core/main.css' rel='stylesheet' />
-    <link href='../gg/644/hwa/@fullcalendar/daygrid/main.css' rel='stylesheet' />
-    <script src='../gg/644/hwa/@fullcalendar/core/main.js'></script>
-    <script src='../gg/644/hwa/@fullcalendar/daygrid/main.js'></script>
-    <script src='../gg/644/hwa/@fullcalendar/interaction/main.js'></script>
+    <link href='hwa/@fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='hwa/@fullcalendar/daygrid/main.css' rel='stylesheet' />
+    <script src='hwa/@fullcalendar/core/main.js'></script>
+    <script src='hwa/@fullcalendar/daygrid/main.js'></script>
+    <script src='hwa/@fullcalendar/interaction/main.js'></script>
+
+
+    <script src="js/socket.io/socket.io.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/webrtc.js"></script>
 
     <style>
         /* 사이드바 스타일 */
@@ -154,6 +159,98 @@
         }
     </style>
 
+      <style type="text/css" media="screen">
+        body {
+            overflow: scroll;
+        }
+        .forSource{
+            height: 85vh;
+            width: 100%;
+            display: none;
+        }
+        #editor{
+            height: 100%;
+            width: 100%;
+        }
+       
+      </style>
+      <!-- 채팅 css-->
+      <style> 
+        .panel-body {
+            overflow-y: scroll;
+            height: 790px;
+        }
+      </style>
+
+    <!-- chat style-->
+    <style>
+.row{
+    height: 85vh;
+}
+.chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#chat  .container{
+    width: 100%;
+}
+.chat li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body
+{
+    margin-right: 60px;
+}
+
+
+.chat li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 700px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+    </style>
+
 </head>
 
 <body>
@@ -194,8 +291,8 @@
 
     <div id="code">
         <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#source">Source Code</a>
+            <li class="nav-item" id="srcTab">
+              <a class="nav-link" data-toggle="tab" href="#source">Source Code</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#board">Board</a>
@@ -208,39 +305,46 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#paint">Paint</a>
-              </li>
+            </li>
+            <li>
+                <a class="nav-link" data-toggle="tab" href="#videochat">VideoChat</a>
+            </li>
         </ul>
-          <div class="tab-content">
+        <div class="tab-content">
             <div class="tab-pane fade show active" id="source">
-                <p>source</p>
-                <div id="editor">function foo(items) {
-                    var x = "All this is syntax highlighted";
-                    return x;
-                }</div>
+                <div class="forSource">
+                        언어 선택
+                        <select class="selectpicker" id="selectedLang">
+                            <option value="" selected disabled hidden>Choose here</option>
+                            <option value="c_cpp">C/C++</option>
+                            <option value="java">Java</option>
+                            <option value="javascript">Javascript</option>
+                            <option value="html">HTML</option>
+                          </select>
+                    
+                    <pre id="editor"></pre>
+                </div>
             </div>
             <div class="tab-pane fade" id="board">
-              <p>board</p>
-              <button type="button" class="btn pull-right btn-link" id="writeBoard" onclick="boardWrite()">새 게시물 작성</button>
-              <table id = "boardList" class="table table-hover">
-                  <thead>
-                      <tr>
-                          <th>제목</th>
-                          <th>작성자</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>1번 게시물</td>
-                          <td>박성진</td>
-                      </tr>
-                      <tr>
-                          <td>2번 게시물</td>
-                          <td>계희준</td>
-                      </tr>
-                  </tbody>
-              </table>
-
+            
+                <button type="button" class="btn pull-right btn-link" id="writeBoard" onclick="boardWrite()">새 게시물 작성</button>
+                <table id = "boardList" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>제목</th>
+                            <th>작성자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        </tr>
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+        
             </div>
+
             <div class="tab-pane fade" id="calendar">
                 
                 <div id='fcalendar'></div>
@@ -251,11 +355,111 @@
             </div>
             <div class="tab-pane fade" id="paint">
                 <p>paint</p>
+                <iframe width="100%" height="700px" frameborder="0" scrolling="no" src="https://sumopaint.com/flash/api.php"></iframe>
             </div>
-          </div>
+            <div class="tab-pane fade" id="videochat">
+                <p>video chat</p>
+                <a href="#" onclick='pageReady()'><svg class="bi bi-camera-video-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.667 3h6.666C10.253 3 11 3.746 11 4.667v6.666c0 .92-.746 1.667-1.667 1.667H2.667C1.747 13 1 12.254 1 11.333V4.667C1 3.747 1.746 3 2.667 3z"/>
+                    <path d="M7.404 8.697l6.363 3.692c.54.313 1.233-.066 1.233-.697V4.308c0-.63-.693-1.01-1.233-.696L7.404 7.304a.802.802 0 0 0 0 1.393z"/>
+                  </svg></a>
+
+                <a href="#" onclick='closeVideo()'>
+                    <svg class="bi bi-camera-video-off-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.429 3.55A1.66 1.66 0 0 0 1 4.667v6.666C1 12.253 1.746 13 2.667 13h6.666c.43 0 .821-.162 1.117-.429l-9.02-9.02zm13.111 8.868a.798.798 0 0 0 .46-.726V4.308c0-.63-.693-1.01-1.233-.696L11 5.218v-.551C11 3.747 10.254 3 9.333 3H5.121l9.419 9.418z"/>
+                        <path fill-rule="evenodd" d="M13.646 14.354l-12-12 .708-.708 12 12-.708.707z"/>
+                      </svg>
+                </a>
+                <div class="videos">
+                    <div>
+                        <video id="localVideo" width="320" height="240" autoplay muted playsinline ></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div id="chat">
-        <p><textarea style="width:100%" rows="30"></textarea></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" id="accordion">
+                            <span class="glyphicon glyphicon-comment"></span> Chat
+                        </div>
+                    
+                        <div class="panel-body">
+                            <ul class="chat" id="_chat">
+                                <li class="left clearfix"><span class="chat-img pull-left">
+                                    <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                                </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                        </div>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                            dolor, quis ullamcorper ligula sodales.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="right clearfix"><span class="chat-img pull-right">
+                                    <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                                </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                        </div>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                            dolor, quis ullamcorper ligula sodales.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="left clearfix"><span class="chat-img pull-left">
+                                    <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                                </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                        </div>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                            dolor, quis ullamcorper ligula sodales.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="right clearfix"><span class="chat-img pull-right">
+                                    <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                                </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                        </div>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                            dolor, quis ullamcorper ligula sodales.
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-warning btn-sm" id="btn-chat" onclick="sendMsg()">Send</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <aside>
@@ -373,7 +577,9 @@
             // $(".sidenav table tbody tr").append('<td th:text="${user.email}"><a href="#">' + $('#r_name').val() + '</a>');//서버에서 받은 roomid
             // $(".sidenav table tbody").append('</tr>');
             // alert("방 생성을 성공하였습니다.");
-            // $('#r_create').modal("hide");
+            $(".sidenav table tbody").append('<tr>');
+            $(".sidenav").append('<a href="#">'+$('#r_name').val()+'</a>');
+            $('#r_create').modal("hide");
 
             //JSON ID Rname 
             var obj = new Object();
@@ -420,44 +626,47 @@
 
     </script>
 
-    <script>
-        var event_name;
-        var choice;
-       //calendar 생성
-       document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('fcalendar');
+<script>
+    var event_name;
+    var choice;
+   //calendar 생성
+   document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('fcalendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'dayGrid' ,'interaction' ],
-          events: [
-               {
-                   title: "돼지갈비 먹고싶담..",
-                   start: "2020-06-08"
-               }
-            ],
-          dateClick: function (info) {
-              choice=info.dateStr;
-            $('#s_add').modal("show"); //일정 추가
-          }
-             
-        });
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'dayGrid' ,'interaction' ],
+      events: [
+           {
+               title: "돼지갈비 먹고싶담..",
+               start: "2020-06-08"
+           }
+        ],
+      dateClick: function (info) {
+          choice=info.dateStr;
+        $('#s_add').modal("show"); //일정 추가
+      }
+         
+    });
+    calendar.addEventSource({title:"aa", start:"2020-06-10"});
+    calendar.render();
+  });
+  //오늘날짜말고 선택한 날짜로 디폴트 하고 싶은데 안됨 ㅜㅅㅜ 그리고 시간도 이상함;;
+  document.getElementById('currentDatetime').value = new Date().toISOString().substring(0, 16);
+  //일정 등록
+  $("#add_schedule").click(function () {
+        event_name = $('#schedule_name').val(); //일정명 받아왔는데 캘린더에 어떻게 추가하지..
+        alert(choice+'에 일정이 등록되었습니다.'); //사실 일정 등록 안됨 
 
+        $('#s_add').modal('hide');
+        
+        calendar.addEvent( {'title':event_name, 'start':choice}); // end 미정
         calendar.render();
-      });
-      //오늘날짜말고 선택한 날짜로 디폴트 하고 싶은데 안됨 ㅜㅅㅜ 그리고 시간도 이상함;;
-      document.getElementById('currentDatetime').value = new Date().toISOString().substring(0, 16);;
+        // $.ajax({
 
-      //일정 등록
-      $("#add_schedule").click(function () {
-            event_name = $('#schedule_name').val(); //일정명 받아왔는데 캘린더에 어떻게 추가하지..
-            alert(choice+'에 일정이 등록되었습니다.'); //사실 일정 등록 안됨 ㅎㅅㅎ
-            $('#s_add').modal('hide');
-            
-            $.ajax({
+        // });
+    });
 
-            });
-        });
-    </script>
+</script>
 
     <script> // Board
         /*
@@ -499,7 +708,7 @@
             }
             
             var str = "";
-            str +=  "<tr>";
+            str +=  "<tr class='test'>";
             str +=  "<td>";
             str +=  textTitle;
             str +=  "</td>";
@@ -508,7 +717,7 @@
             str +=  "</td>";
             str +=  "</tr>";
             $("#board #boardList tbody").append(str);
-
+           
             var myDiv = document.getElementById("new_contents");
             var parent = myDiv.parentElement; // 부모 객체 알아내기
             parent.removeChild(myDiv); // 부모로부터 myDiv 객체 떼어내기
@@ -525,11 +734,126 @@
         })
     </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
+<script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script> 
+<script> // for code editor
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/monokai");
-    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/twilight");
+
+    $('#selectedLang').change(function(){
+        //alert("change "+ $("#selectedLang option:selected").val());
+        alert("change language "+$("#selectedLang option:selected").val());
+        editor.session.setMode("ace/mode/"+$("#selectedLang option:selected").val());
+
+    })
+</script>
+<script> // tab 이동시 div 차지하는 문제 해결하는 script code
+$(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+
+    $('.nav-tabs #srcTab a').on('hide.bs.tab', function(e){
+        $('.forSource').css("display","none");
+    });
+
+    $('.nav-tabs #srcTab a').on('show.bs.tab', function(e){
+        $('.forSource').css("display", "block");
+    });
+});
+
+</script>
+
+
+<script> // for chat 
+
+
+        function sendMsg(){
+            var date = new Date();
+            var d = date.getUTCDate();
+            var m = date.getMonth() + 1;
+            var y = date.getFullYear();
+            var h = date.getHours();
+            var min = date.getMinutes();
+            var txt = $("#btn-input").val();
+
+
+           var Fecha = y + "/" + m + "/" + d + "  " + h + ":"+min;
+          
+           alert(Fecha + txt);
+
+           var newChat = document.createElement("li");
+           var oldChat = document.getElementById('_chat');
+           newChat.setAttribute("class","right clearfix");
+           
+           newChat.innerHTML = [
+                "<span class='chat-img pull-right'>",
+                "<img src='http://placehold.it/50/FA6F57/fff&text=ME' alt='User Avatar' class='img-circle' />",
+                "</span>",
+                "<div class='chat-body clearfix'>",
+                "<div class='header'>",
+                "<small class='text-muted'><span class='glyphicon glyphicon-time'></span>",
+                Fecha,
+                "<strong class='pull-right primary-font'>",
+                "userID",
+                "</strong><div>",
+                "<p>",
+                txt,
+                "</p></div>"    
+           ].join(" ");
+           oldChat.appendChild(newChat);
+        }
+
+        $(document).ready(function(){
+            $("#btn-input").keypress(function (e) {
+            if (e.which == 13){
+                   sendMsg();  // 실행할 이벤트
+        }
+    });
+});
+        
+
+</script>
+
+<script> //board read
+
+    $(document).on("click",".test",function(){
+        var str="";
+        var tdArr=[];
+        
+        var tr = $(this);
+        var td = tr.children();
+        $(this).each(function(i){
+            tdArr.push(td.eq(i).text());
+        })
+        var board_title = td.eq(0).text();
+        var user_name = td.eq(1).text();
+
+        var newDIV = document.createElement("div");
+            var board_test = document.getElementById("board");
+            var contents = document.getElementById("writeBoard");
+            newDIV.setAttribute("class","input-group col-xs-12");
+            newDIV.setAttribute("id", "prev_contents");
+            newDIV.innerHTML = [
+            "제목 : ",
+            board_title,
+            "<br>",
+            "작성자 : ",
+            user_name,
+            "<br>",
+            "내용 : <br>",
+            "전공종합설계",
+            "<button type='button' id='close_text' class='btn pull-right btn-danger'>닫기</button>"
+            ].join(" ");
+
+            board_test.insertBefore(newDIV,contents);
+    });
+
+    $(document).on("click","#close_text",function(){
+        var myDiv = document.getElementById("prev_contents");
+        var parent = myDiv.parentElement; // 부모 객체 알아내기
+        parent.removeChild(myDiv); // 부모로부터 myDiv 객체 떼어내기
+    })
+
 </script>
 </body>
 
