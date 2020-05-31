@@ -164,7 +164,7 @@
             overflow: scroll;
         }
         .forSource{
-            height: 85vh;
+            height: 720px;
             width: 100%;
             display: none;
         }
@@ -174,19 +174,11 @@
         }
        
       </style>
-      <!-- 채팅 css-->
-      <style> 
-        .panel-body {
-            overflow-y: scroll;
-            height: 790px;
-        }
-      </style>
+
 
     <!-- chat style-->
     <style>
-.row{
-    height: 85vh;
-}
+
 .chat
 {
     list-style: none;
@@ -777,9 +769,8 @@ $(document).ready(function(){
             var txt = $("#btn-input").val();
 
 
-           var Fecha = y + "/" + m + "/" + d + "  " + h + ":"+min;
-          
-           alert(Fecha + txt);
+           var time = y + "/" + m + "/" + d + "  " + h + ":"+min;
+
 
            var newChat = document.createElement("li");
            var oldChat = document.getElementById('_chat');
@@ -792,7 +783,7 @@ $(document).ready(function(){
                 "<div class='chat-body clearfix'>",
                 "<div class='header'>",
                 "<small class='text-muted'><span class='glyphicon glyphicon-time'></span>",
-                Fecha,
+                time,
                 "<strong class='pull-right primary-font'>",
                 "userID",
                 "</strong><div>",
@@ -801,6 +792,7 @@ $(document).ready(function(){
                 "</p></div>"    
            ].join(" ");
            oldChat.appendChild(newChat);
+           $("#btn-input").val("");
         }
 
         $(document).ready(function(){
