@@ -13,9 +13,7 @@ JpaRepository<Entity, 기본키 타입> 을 extends하면 기본적인 Create, R
 @Repository
 public interface RoomRepository extends JpaRepository<RoomModel, String> {
     public Optional<RoomModel> findByRoomIdAndUserId(String roomId, String userId);
-//    public List<RoomModel> findAllByUserId(String userId);
-//    public List<RoomModel> findAllByRoomId(String roomId);
-    public Optional<List<RoomModel>> findAllByUserId(String userId);
-    public Optional<List<RoomModel>> findAllByRoomId(String userId);
+    public List<RoomModel> findAllByUserId(String userId);
+    public List<RoomModel> findAllByRoomId(String userId);
     public Optional<RoomModel> findByRoomId(String roomId);
 }
