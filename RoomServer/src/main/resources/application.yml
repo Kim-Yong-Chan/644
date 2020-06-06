@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8300
 eureka:
   instance:
     prefer-ip-address: true
@@ -12,9 +12,12 @@ eureka:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: 644db2020!
-    url: jdbc:mysql://db-644.cria4byvgcl8.ap-northeast-2.rds.amazonaws.com:3306/db-644?serverTimezone=UTC
-    username: admin
+#    password: 644db2020!
+#    url: jdbc:mysql://db-644.cria4byvgcl8.ap-northeast-2.rds.amazonaws.com:3306/db-644?serverTimezone=UTC
+#    username: admin
+    url: jdbc:mysql://localhost:3306/teamviewer?serverTimezone=UTC
+    password: root
+    username: root
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

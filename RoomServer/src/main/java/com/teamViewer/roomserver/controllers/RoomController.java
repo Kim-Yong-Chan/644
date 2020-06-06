@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@CrossOrigin("**")
 @RequestMapping("/rooms")
 @RestController
 @ControllerAdvice
@@ -51,16 +50,18 @@ public class RoomController {
     @ResponseBody
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@RequestBody CreateRoomRequest createRequestModel){
+        log.info("Post new Room [" +createRequestModel.getName()+"]");
+        System.out.println("Post new Room [" +createRequestModel.getName()+"]");
         return roomService.createRoom(createRequestModel.getUserId(), createRequestModel.getName());
     }
 
 
 
     //userId받아서 userId가 속해있는 방의 목록 리턴해주는 함수
-    @RequestMapping(value = "/{userId}", method = RequestMethod.POST)
-    public List<RoomModel> roomListById(@RequestBody RoomListRequest roomListRequestModel) throws NoDataException {
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    public List<RoomModel> roomListById(@PathVariable("userId") String userId) throws NoDataException {
         log.debug("get ID");
-        return roomService.getRoomList(roomListRequestModel.getUserId());
+        return roomService.getRoomList(userId);
 
     }
 
