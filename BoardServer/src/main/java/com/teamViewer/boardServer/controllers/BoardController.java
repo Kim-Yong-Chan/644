@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teamViewer.boardServer.exception.NoDataException;
 import com.teamViewer.boardServer.model.BoardModel;
-import com.teamViewer.boardServer.model.request.DeleteModel;
 import com.teamViewer.boardServer.services.BoardService;
 import lombok.extern.slf4j.Slf4j;
 
