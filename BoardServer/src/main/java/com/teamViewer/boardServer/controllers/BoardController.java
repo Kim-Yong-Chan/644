@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teamViewer.boardServer.exception.NoDataException;
 import com.teamViewer.boardServer.model.BoardModel;
+import com.teamViewer.boardServer.model.request.BoardDeleteRequestModel;
 import com.teamViewer.boardServer.services.BoardService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,8 +32,8 @@ public class BoardController {
 	}
 
 	@RequestMapping(path = "/", method = RequestMethod.DELETE)
-	public void delete(@RequestBody Integer boardId) throws NoDataException {
-		boardService.delete(boardId);
+	public void delete(@RequestBody BoardDeleteRequestModel boardDeleteRequestModel) throws NoDataException {
+		boardService.delete(boardDeleteRequestModel.getBoardId());
 	}
 
 	@RequestMapping(path = "/room/{roomNum}", method = RequestMethod.GET)
