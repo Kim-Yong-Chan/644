@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,9 +18,9 @@ import com.teamViewer.boardServer.model.BoardModel;
 import com.teamViewer.boardServer.services.BoardService;
 import lombok.extern.slf4j.Slf4j;
 
+@RequestMapping("/boards")
 @RestController
 @Slf4j
-@RequestMapping("/boards")
 public class BoardController {
 	@Autowired
 	BoardService boardService;
@@ -34,14 +35,14 @@ public class BoardController {
 		boardService.delete(boardId);
 	}
 
-	@RequestMapping(path = "/room", method = RequestMethod.GET)
-	public List<BoardModel> getBoardList(@RequestBody Integer roomNum){
+	@RequestMapping(path = "/room/{roomNum}", method = RequestMethod.GET)
+	public List<BoardModel> getBoardList(@PathVariable("roomNum") Integer roomNum){
 		return boardService.findListByRoomId(roomNum);
 	}
 
 
-	@RequestMapping(path = "/user", method = RequestMethod.GET)
-	public BoardModel getContent(@RequestBody Integer boardId) throws NoDataException {
+	@RequestMapping(path = "/board/{boardId}", method = RequestMethod.GET)
+	public BoardModel getContent(@PathVariable("boardId") Integer boardId) throws NoDataException {
 		return boardService.findByBoardId(boardId);
 	}
 
