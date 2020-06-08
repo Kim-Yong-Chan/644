@@ -1,17 +1,23 @@
 package com.teamviewer.WebServer.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.teamviewer.WebServer.client.BoardClient;
 import com.teamviewer.WebServer.client.LoginClient;
+import com.teamviewer.WebServer.client.RoomClient;
 import com.teamviewer.WebServer.model.LoginRequestModel;
 import com.teamviewer.WebServer.model.LoginResponseModel;
+import com.teamviewer.WebServer.model.RoomModel;
 import com.teamviewer.WebServer.session.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +27,10 @@ public class pageController {
 
 	@Autowired
 	private LoginClient loginClient;
+	@Autowired
+	private RoomClient roomClient;
+	@Autowired
+	private BoardClient boardClient;
 
 	@Resource
 	private UserInfo userInfo;
@@ -33,12 +43,17 @@ public class pageController {
 
 	/*model을 이용하여 thymeleaf 사용*/
 	@RequestMapping("/main")
-	public String mainPage(Model model){
+	public String mainPage(Model model) throws Exception {
 		log.debug("main");
 		if(userInfo.getName() == null || userInfo.getUserId() == null) return "redirect:login";
+		getRoomList();
 		model.addAttribute("name", userInfo.getName());
 		model.addAttribute("userId", userInfo.getUserId());
-		return "mainPage.html";
+		model.addAttribute("activatedRoom", (userInfo.getActivatedRoom() == null ) ? 0 : userInfo.getActivatedRoom());
+		userInfo.setBoardList(boardClient.getBoardList((userInfo.getActivatedRoom() == null ) ? 0 : userInfo.getActivatedRoom()));
+		model.addAttribute("roomList", userInfo.getRoomModelList());
+		model.addAttribute("postList", userInfo.getBoardList());
+		return "cootoo.html";
 	}
 
 	/**/
@@ -47,16 +62,29 @@ public class pageController {
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
 		log.debug("login.do");
-		System.out.println(userId+" "+userPw);
 		try{
 			LoginResponseModel loginResponseModel = loginClient.login(new LoginRequestModel(userId, userPw));
 			userInfo.setUserId(loginResponseModel.getUserId());
 			userInfo.setName(loginResponseModel.getName());
+
 		}catch (Exception e){
 			log.debug(e.toString());
-			System.out.println(e.toString());
 			return "redirect:login";
 		}
 		return "redirect:main";
+	}
+
+	@RequestMapping(value = "/RoomList", method = RequestMethod.GET)
+	public String getRoomList() throws Exception {
+		userInfo.setRoomModelList(roomClient.roomListById(userInfo.getUserId()));
+		return "redirect:/main";
+	}
+	@RequestMapping(value = "/PostsList/{roomId}", method = RequestMethod.GET)
+	public String getPostList(@PathVariable("roomId") Integer roomId){
+		userInfo.setBoardList(boardClient.getBoardList(roomId));
+		userInfo.setActivatedRoom(roomId);
+		log.debug("roomId " + roomId);
+		System.out.println("roomId "+ roomId);
+		return "redirect:/main";
 	}
 }
