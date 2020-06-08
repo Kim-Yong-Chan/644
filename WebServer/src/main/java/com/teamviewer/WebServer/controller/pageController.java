@@ -43,14 +43,16 @@ public class pageController {
 
 	/*model을 이용하여 thymeleaf 사용*/
 	@RequestMapping("/main")
-	public String mainPage(Model model){
+	public String mainPage(Model model) throws Exception {
 		log.debug("main");
 		if(userInfo.getName() == null || userInfo.getUserId() == null) return "redirect:login";
+		getRoomList();
 		model.addAttribute("name", userInfo.getName());
 		model.addAttribute("userId", userInfo.getUserId());
+		model.addAttribute("activatedRoom", (userInfo.getActivatedRoom() == null ) ? 0 : userInfo.getActivatedRoom());
+		userInfo.setBoardList(boardClient.getBoardList((userInfo.getActivatedRoom() == null ) ? 0 : userInfo.getActivatedRoom()));
 		model.addAttribute("roomList", userInfo.getRoomModelList());
 		model.addAttribute("postList", userInfo.getBoardList());
-		model.addAttribute("activatedRoom", (userInfo.getActivatedRoom() == null ) ? 0 : userInfo.getActivatedRoom());
 		return "cootoo.html";
 	}
 
@@ -64,7 +66,7 @@ public class pageController {
 			LoginResponseModel loginResponseModel = loginClient.login(new LoginRequestModel(userId, userPw));
 			userInfo.setUserId(loginResponseModel.getUserId());
 			userInfo.setName(loginResponseModel.getName());
-			getRoomList();
+
 		}catch (Exception e){
 			log.debug(e.toString());
 			return "redirect:login";
@@ -81,6 +83,8 @@ public class pageController {
 	public String getPostList(@PathVariable("roomId") Integer roomId){
 		userInfo.setBoardList(boardClient.getBoardList(roomId));
 		userInfo.setActivatedRoom(roomId);
+		log.debug("roomId " + roomId);
+		System.out.println("roomId "+ roomId);
 		return "redirect:/main";
 	}
 }

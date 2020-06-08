@@ -9,11 +9,11 @@ function getRoomList(){
 }
 
 function refreshRoomList(){
-    document.location.href = 'http://192.168.43.70:8100/RoomList';
+    window.location.href = 'http://192.168.43.70:8100/RoomList';
 }
 
 function refreshBoardList(roomId){
-    document.location.href = 'http://192.168.43.70:8100/PostsList/'+roomId;
+    window.location.href = 'http://192.168.43.70:8100/PostsList/'+roomId;
     console.log("activated " + roomId);
 }
 $(document).ready(getRoomList());

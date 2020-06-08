@@ -31,6 +31,8 @@
     <script src="js/rooms.js"></script>
     <!-- 게시글 관련 js -->
     <script src="js/posts.js"></script>
+    <!-- 컴파일 관련 -->
+    <script src="js/compile.js"></script>
 
     <style>
         /* 사이드바 스타일 */
@@ -259,7 +261,7 @@
                     <a class="navbar-brand" href="#">Cooperatool</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user" th:text="|반갑습니다! ${userId}님!|"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user" th:text="|반갑습니다! ${userId}님 roomcode : ${activatedRoom}|"></span></a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                 </ul>
             </div>
@@ -321,6 +323,14 @@
                           </select>
                     
                     <pre id="editor"></pre>
+                </div>
+                <br>
+                <div>
+                    <a>main class : </a><textarea id="mainClass"></textarea>
+                    <button type="button" class="btn pull-right btn-primary" id="execute" onclick="executeCode()">코드 실행</button>
+                </div>
+                <div>
+                    <textarea id="executeResult" readonly ></textarea>
                 </div>
             </div>
             <div class="tab-pane fade" id="board">
@@ -862,6 +872,19 @@ $(document).ready(function(){
         parent.removeChild(myDiv); // 부모로부터 myDiv 객체 떼어내기
     })
 
+</script>
+
+<script>
+    function executeCode(){
+        var contents = ace.edit("editor").getValue();
+        var language = $("#selectedLang option:selected").val();
+        var roomId = "[[ ${activatedRoom} ]]";
+        var mainClass = $("#mainClass").val();
+        console.log(language+" "+roomId+" "+contents);
+        var result = compile(language, roomId, contents, mainClass);
+        console.log(result);
+        $("#executeResult").val(result);
+    }
 </script>
 </body>
 
