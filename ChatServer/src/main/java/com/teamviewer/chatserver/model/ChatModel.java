@@ -28,6 +28,7 @@ public class ChatModel {
     @Column
     private Date chatCreatedDate;
 
+
     public ChatModel(){
 
     }
