@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @Slf4j
+@RestController
 //@RequestMapping("/chat")
 public class ChatController {
     @Autowired
@@ -31,6 +31,7 @@ public class ChatController {
     @GetMapping("/chat/{roomId}")
     public List<OutputChatModel> getChat(@PathVariable String roomId){
         List<OutputChatModel> outputChatModels = chatService.getAllChat(roomId);
+        log.debug("get chat ok");
         return outputChatModels;
     }
 
@@ -39,7 +40,7 @@ public class ChatController {
     public OutputChatModel sendChat(@RequestBody InputChatModel inputChatModel) throws Exception{
         //OutputChatModel outputChatModel=chatService.chatInput(inputChatModel);
         System.out.println(inputChatModel.getChatStr());
-        log.debug("{}",inputChatModel.getChatStr());
+        log.info(inputChatModel.getChatStr());
         return chatService.chatInput(inputChatModel);
     }
 
