@@ -11,14 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Slf4j
 @Service
 public class CalendarService {
     @Autowired
     private CalendarRepository calendarRepository;
 
     public void calCreate(CalendarModel calendarModel) {
-       calendarRepository.save(calendarModel);
+        calendarRepository.save(calendarModel);
     }
 
     public List<OutputCalendarModel> getAllCal(String roomId) {
@@ -34,6 +33,5 @@ public class CalendarService {
     public void calDelete(int num) {
         CalendarModel calendarModel=calendarRepository.findByNum(num);
         calendarRepository.delete(calendarModel);
-        log.debug("{}",calendarModel.getCalName());
     }
 }
