@@ -22,10 +22,17 @@
     <script src='hwa/@fullcalendar/daygrid/main.js'></script>
     <script src='hwa/@fullcalendar/interaction/main.js'></script>
 
-
+    <!-- WebRTC -->
     <script src="js/socket.io/socket.io.js"></script>
     <script src="js/config.js"></script>
     <script src="js/webrtc.js"></script>
+
+    <!-- 방 관련 js -->
+    <script src="js/rooms.js"></script>
+    <!-- 게시글 관련 js -->
+    <script src="js/posts.js"></script>
+    <!-- 컴파일 관련 -->
+    <script src="js/compile.js"></script>
 
     <style>
         /* 사이드바 스타일 */
@@ -169,7 +176,7 @@
             display: none;
         }
         #editor{
-            height: 100%;
+            height: 80%;
             width: 100%;
         }
        
@@ -254,7 +261,7 @@
                     <a class="navbar-brand" href="#">Cooperatool</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user" th:text="|반갑습니다! ${userId}님!|"></span>이화진</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user" th:text="|반갑습니다! ${userId}님 roomcode : ${activatedRoom}|"></span></a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                 </ul>
             </div>
@@ -266,13 +273,14 @@
         <table>
             <thead>
                 <tr>
-                    <th>List</th>
+                    <th>방 이름</th>
+                    <th>방 코드</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="room : ${roomList}">
-                    <td th:text="${room.roomtitle}"><a href="#">room</a></td>
-                    <td th:text="${room.roomid}"><a href="#">roomid</a></td>
+                    <td th:text="${room.name}" th:onclick="|refreshBoardList(${room.roomId})|"><a>방 이름</a></td>
+                    <td th:text="${room.roomId}"><a href="#">방 코드</a></td>
                 </tr>
             </tbody>
         </table>
@@ -312,10 +320,18 @@
                             <option value="java">Java</option>
                             <option value="javascript">Javascript</option>
                             <option value="html">HTML</option>
-                          </select>
-                    
+                        </select>
+                        <br>
+                        <div class="mainClass" style="display: inline;">
+                            Main Class : 
+                            <input id="mainClass" type="text" placeholder="클래스명을 입력하세요">
+                        </div>
+
+                    <button type="button" class="btn pull-right btn-primary" id="execute" onclick="executeCode()" style="display: inline;">코드 실행</button>
                     <pre id="editor"></pre>
+                    <textarea class='form-control' rows='12' id='executeResult' aria-multiline='true' readonly></textarea>
                 </div>
+
             </div>
             <div class="tab-pane fade" id="board">
             
@@ -328,12 +344,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        </tr>
-                        <tr>
+                        <tr th:each="post : ${postList}">
+                            <td th:text="${post.title}" th:onclick="|selectPost('${post.title}', '${post.contents}', '${post.userId}')|"><a>제목</a></td>
+                            <td th:text="${post.userId}"><a>작성자</a></td>
                         </tr>
                     </tbody>
                 </table>
+
+                    <thead>
+
         
             </div>
 
@@ -556,7 +575,7 @@
         $("#c_modalY").click(function () {
             var rName = $("#r_name").val();
             /* <![CDATA[ */
-            var userId = "[[ ${name} ]]";
+            var userId = [[ ${name} ]];
             /* ]]> */
             if (rName === "") {
                 alert("방 제목을 입력하세요");
@@ -569,29 +588,33 @@
             // $(".sidenav table tbody tr").append('<td th:text="${user.email}"><a href="#">' + $('#r_name').val() + '</a>');//서버에서 받은 roomid
             // $(".sidenav table tbody").append('</tr>');
             // alert("방 생성을 성공하였습니다.");
-            $(".sidenav table tbody").append('<tr>');
-            $(".sidenav").append('<a href="#">'+$('#r_name').val()+'</a>');
+            //$(".sidenav table tbody").append('<tr>');
+            //$(".sidenav").append('<a href="#">'+$('#r_name').val()+'</a>');
             $('#r_create').modal("hide");
 
             //JSON ID Rname 
             var obj = new Object();
-            obj.id = userId;
-            obj.roomname = rName;
+            obj.userId = userId;
+            obj.name = rName;
             //JSON 으로 ID 랑 Roomname 넘겨줘야함
             $.ajax({
                 type:"POST",
-                url : "http://localhost:8080/rooms",
+                url : "http://192.168.43.70:5555/roomserver/rooms/create",
                 accept : "application/json",
                 contentType : "application/json",
                 dataType : 'text',
                 data: JSON.stringify(obj),
-                success: successRoomCreate(result),
+                //success: successRoomCreate(result),
+                success: successRoomCreate(""),
                 error : errorRoomCreate
             })
             function successRoomCreate(result){
-                $(".sidenav table tbody").append('<tr>');
-                $(".sidenav").append('<a href="#">'+$('#r_name').val()+'</a>');
+                //$(".sidenav table tbody").append('<tr>');
+                //$(".sidenav").append('<a href="#">'+$('#r_name').val()+'</a>');
                 alert("방 생성을 성공하였습니다.");
+                refreshRoomList();
+                //getRoomList();
+                //location.reload(true);
             }
             function errorRoomCreate(){
                 alert("방 생성을 실패하였습니다.")
@@ -699,7 +722,7 @@
                 return ;
             }
             
-            var str = "";
+            /*var str = "";
             str +=  "<tr class='test'>";
             str +=  "<td>";
             str +=  textTitle;
@@ -713,7 +736,10 @@
             var myDiv = document.getElementById("new_contents");
             var parent = myDiv.parentElement; // 부모 객체 알아내기
             parent.removeChild(myDiv); // 부모로부터 myDiv 객체 떼어내기
-            alert("글 작성에 성공 하였습니다");
+            alert("글 작성에 성공 하였습니다");*/
+             //JSON ID Rname
+
+            createPosts(textTitle, textContents, "[[ ${userId} ]]", "[[ ${activatedRoom} ]]");
         });
          /*
         '취소' 버튼 클릭 시 작성폼 DOM 떼어냄
@@ -735,8 +761,8 @@
         //alert("change "+ $("#selectedLang option:selected").val());
         alert("change language "+$("#selectedLang option:selected").val());
         editor.session.setMode("ace/mode/"+$("#selectedLang option:selected").val());
-
     })
+
 </script>
 <script> // tab 이동시 div 차지하는 문제 해결하는 script code
 $(document).ready(function(){
@@ -846,6 +872,19 @@ $(document).ready(function(){
         parent.removeChild(myDiv); // 부모로부터 myDiv 객체 떼어내기
     })
 
+</script>
+
+<script>
+    function executeCode(){
+        var contents = ace.edit("editor").getValue();
+        var language = $("#selectedLang option:selected").val();
+        var roomId = "[[ ${activatedRoom} ]]";
+        var mainClass = $("#mainClass").val();
+        console.log(language+" "+roomId+" "+contents);
+        var result = compile(language, roomId, contents, mainClass);
+        console.log(result);
+        $("#executeResult").val(result);
+    }
 </script>
 </body>
 
