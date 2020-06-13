@@ -943,6 +943,48 @@ $(function () {
         $("#executeResult").val(result);
     }
 </script>
+
+    <script>
+var inputCheck = 0;
+var originCol = 0;
+var originRow = 0;
+var originCol_tmp = 0;
+var originRow_tmp = 0;
+$(document).ready(function(){
+    ace.edit("editor").on('input', function(e, target) {
+            if(inputCheck){
+                inputCheck = 0;
+                return;
+             }
+            console.log(target.prevOp.args);
+            console.log(target.prevOp.command.name);
+
+            console.log(target.selection.cursor.column);
+            console.log(target.selection.cursor.row);
+            console.log(target);
+
+            sendCode(target.prevOp.args, target.prevOp.command.name, originCol, originRow, originCol_tmp, originRow_tmp, "[[ ${activatedRoom} ]]", "[[ ${userId} ]]");
+
+            //inputCheck = 1;
+            originCol = target.selection.cursor.column;
+            originRow = target.selection.cursor.row;
+    });
+
+     ace.edit("editor").selection.on('changeCursor', function() {
+        originRow = originRow_tmp;
+        originCol = originCol_tmp;
+        originRow_tmp = ace.edit("editor").selection.cursor.row;
+        originCol_tmp = ace.edit("editor").selection.cursor.column;
+        console.log("change cursor["+originCol+","+originRow+"]");
+    });
+
+    sourceConnect("[[ ${activatedRoom} ]]", "[[ ${userId} ]]");
+    connect();
+});
+
+
+</script>
+
 </body>
 
 </html>

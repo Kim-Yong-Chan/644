@@ -7,7 +7,7 @@ function createPosts( title,  contents,  userId,  roomId){
      //JSON 으로 ID 랑 Roomname 넘겨줘야함
      $.ajax({
         type:"POST",
-        url : "http://192.168.43.70:5555/boardserver/boards/",
+        url : zuulserver+"/boardserver/boards/",
         accept : "application/json",
         contentType : "application/json",
         dataType : 'text',

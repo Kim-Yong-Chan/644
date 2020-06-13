@@ -1,4 +1,4 @@
-package com.teamViewer.roomserver.config;
+package com.teamviewer.WebServer.config;
 
 import java.io.IOException;
 

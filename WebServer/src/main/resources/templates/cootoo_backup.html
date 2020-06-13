@@ -886,6 +886,73 @@ $(document).ready(function(){
         $("#executeResult").val(result);
     }
 </script>
+<script>
+    $(document).ready(function(){
+    ace.edit("editor").on('input', function(e, target) {
+            console.log(target.prevOp.args);
+            console.log(target.prevOp.command.name);
+
+            console.log(target.selection.cursor.column);
+            console.log(target.selection.cursor.row);
+            console.log(target);
+            sendCode(target.prevOp.args, target.prevOp.command.name, target.selection.cursor.column, target.selection.cursor.row);
+    });
+    sourceConnect();
+    connect();
+});
+
+var sourceClient;
+function sourceConnect() {
+    var roomId = "[[ ${activatedRoom} ]]";
+    var socket = new SockJS('http://192.168.43.70:8600/websocket');
+    sourceClient = Stomp.over(socket);
+    sourceClient.connect({}, function (frame) {
+        setConnected(true);
+        console.log('source Chatting Connected: ' + frame);
+
+        ///topic/${roomID}
+        sourceClient.subscribe('/source/' + roomId, function (chat) { //받는거
+            showCode(JSON.parse(chat.body));
+        });
+    });
+}
+
+function sourceDisconnect() {
+    if (sourceClient !== null) {
+        sourceClient.disconnect();
+    }
+    console.log("source Disconnected");
+}
+
+
+function sendCode(args, command, column, row) {
+    var roomId = "[[ ${activatedRoom} ]]";
+    var userId = "[[ ${userId} ]]";
+    //"/app/${roomId}"
+    //"/app/"+$("#roomID").val()+"/"
+    //stompClient.send("/app/" + roomId, {}, JSON.stringify({ 'roomId': roomId, 'userId': userId, 'chatStr': $("#btn-input").val() }));
+    sourceClient.send("/source/" + roomId, {}, JSON.stringify({ 'col': column, 'row': row, 'character': args, 'command' : command, 'userId' : userId}));
+
+}
+
+function showCode(msg) {
+    console.log(msg);
+    var userId = [[ ${userId} ]];
+    if(msg.userId === userId){
+        return;
+    }
+
+    if(msg.command === 'insertstring'){
+        ace.edit("editor").session.insert({row:msg.row, column:msg.col}, msg.character);
+    }else{
+        ace.edit("editor").session.insert({row:msg.row, column:msg.col}, "\b");
+    }
+
+    //ace.edit("editor").moveCursorTo(msg.row, msg.column);
+    //ace.edit("editor").session.
+}
+
+</script>
 </body>
 
 </html>
