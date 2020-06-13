@@ -48,13 +48,13 @@ public class RoomService {
         //roomId생성하고(중복허용 X) roomRequestModel의 userId와 roomName을 더해서 테이블에 튜플 추가하고 id 리턴
 
         LocalDateTime now = LocalDateTime.now();
-        int roomId = now.hashCode();
+        int roomId = (int)( ( (long) now.hashCode() + 2123456789) % 2123456789);
 
         //난수생성
         String roomIdString = Integer.toString(roomId);
 
         while(roomRepository.findByRoomId(roomIdString).isPresent()) {
-            roomId = (int) Math.random();
+            roomId = (int)( ( (long) Math.random() + 2123456789) % 2123456789);
             roomIdString = Integer.toString(roomId);
         }
 
