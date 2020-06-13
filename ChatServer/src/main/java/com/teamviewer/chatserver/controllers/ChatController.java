@@ -20,14 +20,7 @@ import java.util.List;
 public class ChatController {
     @Autowired
     private ChatService chatService;
-    /*
-    @PostMapping("/chat")
-    public String addChat(@RequestBody InputChatModel inputChatModel){
-        chatService.chatInput(inputChatModel);
-        return "ok";
-    }
-    */
-
+   
     @GetMapping("/chat/{roomId}")
     public List<OutputChatModel> getChat(@PathVariable String roomId){
         List<OutputChatModel> outputChatModels = chatService.getAllChat(roomId);
