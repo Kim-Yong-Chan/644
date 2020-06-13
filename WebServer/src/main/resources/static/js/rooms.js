@@ -1,7 +1,7 @@
 function getRoomList(){
     $.ajax({
         type:"GET",
-        url : "http://192.168.43.70:8100/RoomList",
+        url : webserver+"/RoomList",
         accept : "application/json",
         contentType : "application/json",
         dataType : 'text',
@@ -9,11 +9,11 @@ function getRoomList(){
 }
 
 function refreshRoomList(){
-    window.location.href = 'http://192.168.43.70:8100/RoomList';
+    window.location.href = webserver+"/RoomList";
 }
 
 function refreshBoardList(roomId){
-    window.location.href = 'http://192.168.43.70:8100/PostsList/'+roomId;
+    window.location.href = webserver+'/PostsList/'+roomId;
     console.log("activated " + roomId);
 }
 $(document).ready(getRoomList());

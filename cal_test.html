@@ -943,6 +943,103 @@ $(function () {
         $("#executeResult").val(result);
     }
 </script>
+
+<script> //board read
+
+    $(document).on("click",".test",function(){
+        var str="";
+        var tdArr=[];
+        
+        var tr = $(this);
+        var td = tr.children();
+        $(this).each(function(i){
+            tdArr.push(td.eq(i).text());
+        })
+        var board_title = td.eq(0).text();
+        var user_name = td.eq(1).text();
+
+        var newDIV = document.createElement("div");
+            var board_test = document.getElementById("board");
+            var contents = document.getElementById("writeBoard");
+            newDIV.setAttribute("class","input-group col-xs-12");
+            newDIV.setAttribute("id", "prev_contents");
+            newDIV.innerHTML = [
+            "제목 : ",
+            board_title,
+            "<br>",
+            "작성자 : ",
+            user_name,
+            "<br>",
+            "내용 : <br>",
+            "전공종합설계",
+            "<button type='button' id='close_text' class='btn pull-right btn-danger'>닫기</button>"
+            ].join(" ");
+
+            board_test.insertBefore(newDIV,contents);
+    });
+
+    $(document).on("click","#close_text",function(){
+        var myDiv = document.getElementById("prev_contents");
+        var parent = myDiv.parentElement; // 부모 객체 알아내기
+        parent.removeChild(myDiv); // 부모로부터 myDiv 객체 떼어내기
+    })
+
+</script>
+
+<script>
+    function executeCode(){
+        var contents = ace.edit("editor").getValue();
+        var language = $("#selectedLang option:selected").val();
+        var roomId = "[[ ${activatedRoom} ]]";
+        var mainClass = $("#mainClass").val();
+        console.log(language+" "+roomId+" "+contents);
+        var result = compile(language, roomId, contents, mainClass);
+        console.log(result);
+        $("#executeResult").val(result);
+    }
+</script>
+
+    <script>
+var inputCheck = 0;
+var originCol = 0;
+var originRow = 0;
+var originCol_tmp = 0;
+var originRow_tmp = 0;
+$(document).ready(function(){
+    ace.edit("editor").on('input', function(e, target) {
+            if(inputCheck){
+                inputCheck = 0;
+                return;
+             }
+            console.log(target.prevOp.args);
+            console.log(target.prevOp.command.name);
+
+            console.log(target.selection.cursor.column);
+            console.log(target.selection.cursor.row);
+            console.log(target);
+
+            sendCode(target.prevOp.args, target.prevOp.command.name, originCol, originRow, originCol_tmp, originRow_tmp, "[[ ${activatedRoom} ]]", "[[ ${userId} ]]");
+
+            //inputCheck = 1;
+            originCol = target.selection.cursor.column;
+            originRow = target.selection.cursor.row;
+    });
+
+     ace.edit("editor").selection.on('changeCursor', function() {
+        originRow = originRow_tmp;
+        originCol = originCol_tmp;
+        originRow_tmp = ace.edit("editor").selection.cursor.row;
+        originCol_tmp = ace.edit("editor").selection.cursor.column;
+        console.log("change cursor["+originCol+","+originRow+"]");
+    });
+
+    sourceConnect("[[ ${activatedRoom} ]]", "[[ ${userId} ]]");
+    connect();
+});
+
+
+</script>
+
 </body>
 
 </html>

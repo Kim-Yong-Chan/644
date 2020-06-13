@@ -13,7 +13,7 @@ function getResult(obj){
    var result;
     $.ajax({
         type:"POST",
-        url : "http://192.168.43.70:5555/executeserver/execute/"+obj.language,
+        url : zuulserver+"/executeserver/execute/"+obj.language,
         accept : "application/json",
         contentType : "application/json",
         dataType : 'text',

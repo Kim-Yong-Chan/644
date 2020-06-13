@@ -1,4 +1,4 @@
-package com.teamViewer.roomserver.config;
+package com.teamviewer.WebServer.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
