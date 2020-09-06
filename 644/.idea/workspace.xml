@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c45356cc-a984-4535-a74c-7d42c385e273" name="Default Changelist" comment="">
+    <list default="true" id="25225f34-2b9f-41ce-8d28-f1f30b5a52a0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CalendarServer/calendarserver/src/main/java/com/teamviewer/calendarserver/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CalendarServer/calendarserver/src/main/java/com/teamviewer/calendarserver/controller/CalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CalendarServer/calendarserver/src/main/java/com/teamviewer/calendarserver/model/CalendarModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CalendarServer/calendarserver/src/main/java/com/teamviewer/calendarserver/model/CalendarModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CalendarServer/calendarserver/src/main/java/com/teamviewer/calendarserver/model/output/OutputCalendarModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CalendarServer/calendarserver/src/main/java/com/teamviewer/calendarserver/model/output/OutputCalendarModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ChatServer/src/main/java/com/teamviewer/chatserver/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatServer/src/main/java/com/teamviewer/chatserver/controllers/ChatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cootoo.html" beforeDir="false" afterPath="$PROJECT_DIR$/../cootoo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales-all.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales-all.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/af.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/af.js" afterDir="false" />
@@ -91,36 +93,24 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>web</find>
-    </findStrings>
+    <expand />
+    <select />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="695" />
-    <option name="y" value="23" />
-    <option name="width" value="585" />
-    <option name="height" value="725" />
-  </component>
-  <component name="ProjectId" id="1h8HXRu4QUInELNh98Oul62CYJl" />
+  <component name="ProjectId" id="1h7pVdJnfHcUvGceSMN5H4ON6XE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -131,19 +121,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1599385284997" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-  </component>
-  <component name="RunManager">
-    <configuration name="DatabaseServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="DatabaseServer" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.teamviewer.DatabaseServer.DatabaseServerApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../UserServer" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -162,15 +140,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c45356cc-a984-4535-a74c-7d42c385e273" name="Default Changelist" comment="" />
-      <created>1599363682851</created>
+      <changelist id="25225f34-2b9f-41ce-8d28-f1f30b5a52a0" name="Default Changelist" comment="" />
+      <created>1599372009094</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1599363682851</updated>
-      <workItem from="1599363686518" duration="9358000" />
-      <workItem from="1599385841487" duration="45000" />
-      <workItem from="1599385897671" duration="617000" />
-      <workItem from="1599386789384" duration="9000" />
+      <updated>1599372009094</updated>
+      <workItem from="1599372010832" duration="46000" />
     </task>
     <servers />
   </component>
@@ -178,41 +153,9 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="71" key="#Notifications" timestamp="1599386918902">
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1599372045261">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1599386918902" />
-    <state x="344" y="6" key="CommitChangelistDialog2" timestamp="1599386971080">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="344" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1599386971080" />
-    <state x="147" y="71" key="DiffContextDialog" timestamp="1599386912209">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="147" y="71" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1599386912209" />
-    <state x="570" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599386881270">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="570" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1599386881270" />
-    <state x="495" y="204" key="git4idea.merge.GitPullDialog" timestamp="1599386934871">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="495" y="204" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1599386934871" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>13</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1599372045261" />
   </component>
 </project>
