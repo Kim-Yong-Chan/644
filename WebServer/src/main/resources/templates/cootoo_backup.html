@@ -34,9 +34,6 @@
     <!-- 컴파일 관련 -->
     <script src="js/compile.js"></script>
 
-    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
-    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <script src="js/source.js"></script>
     <style>
         /* 사이드바 스타일 */
         .sidenav {
@@ -179,7 +176,7 @@
             display: none;
         }
         #editor{
-            height: 80%;
+            height: 100%;
             width: 100%;
         }
        
@@ -323,12 +320,12 @@
                             <option value="java">Java</option>
                             <option value="javascript">Javascript</option>
                             <option value="html">HTML</option>
-                        </select>
-                        <br>
-                        <div class="mainClass" style="display: inline;">
-                            Main Class : 
-                            <input id="mainClass" type="text" placeholder="클래스명을 입력하세요">
-                        </div>
+                          </select>
+                    <br>
+                    <div class="mainClass" style="display: inline;">
+                        Main Class :
+                        <input id="mainClass" type="text" placeholder="클래스명을 입력하세요">
+                    </div>
 
                     <button type="button" class="btn pull-right btn-primary" id="execute" onclick="executeCode()" style="display: inline;">코드 실행</button>
                     <pre id="editor"></pre>
@@ -365,9 +362,10 @@
               
             </div>
             <div class="tab-pane fade" id="db">
-                <iframe width="100%" height="700px" frameborder="0" scrolling="no" src="https://aquerytool.com"></iframe>
+                <p>database</p>
             </div>
             <div class="tab-pane fade" id="paint">
+                <p>paint</p>
                 <iframe width="100%" height="700px" frameborder="0" scrolling="no" src="https://sumopaint.com/flash/api.php"></iframe>
             </div>
             <div class="tab-pane fade" id="videochat">
@@ -462,14 +460,14 @@
                             </ul>
                         </div>
                         <div class="panel-footer">
-                            <form class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..."  onKeyDown="onKeyDown();"/>
+                            <div class="input-group">
+                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                                 <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
+                                    <button class="btn btn-warning btn-sm" id="btn-chat" onclick="sendMsg()">Send</button>
                                 </span>
-                            </form>
+                            </div>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -574,7 +572,7 @@
             $('#r_create').modal("show");
         });
 
-        $("#c_modalY").click(function () { // 방 생성 버튼 클릭
+        $("#c_modalY").click(function () {
             var rName = $("#r_name").val();
             /* <![CDATA[ */
             var userId = [[ ${name} ]];
@@ -584,6 +582,14 @@
                 $("#r_name").focus();
                 return;
             }
+
+            // $(".sidenav table tbody").append('<tr>');
+            // $(".sidenav table tbody tr").append('<td th:text="${user.email}"><a href="#">' + $('#r_name').val() + '</a>'); // 테스트 부분
+            // $(".sidenav table tbody tr").append('<td th:text="${user.email}"><a href="#">' + $('#r_name').val() + '</a>');//서버에서 받은 roomid
+            // $(".sidenav table tbody").append('</tr>');
+            // alert("방 생성을 성공하였습니다.");
+            //$(".sidenav table tbody").append('<tr>');
+            //$(".sidenav").append('<a href="#">'+$('#r_name').val()+'</a>');
             $('#r_create').modal("hide");
 
             //JSON ID Rname 
@@ -593,62 +599,44 @@
             //JSON 으로 ID 랑 Roomname 넘겨줘야함
             $.ajax({
                 type:"POST",
-                url : "http://192.168.43.70:5555/roomserver/rooms/create",
+                url : zuulserver+"/roomserver/rooms/create",
                 accept : "application/json",
                 contentType : "application/json",
                 dataType : 'text',
                 data: JSON.stringify(obj),
+                //success: successRoomCreate(result),
                 success: successRoomCreate(""),
                 error : errorRoomCreate
             })
             function successRoomCreate(result){
+                //$(".sidenav table tbody").append('<tr>');
+                //$(".sidenav").append('<a href="#">'+$('#r_name').val()+'</a>');
                 alert("방 생성을 성공하였습니다.");
                 refreshRoomList();
+                //getRoomList();
+                //location.reload(true);
             }
             function errorRoomCreate(){
                 alert("방 생성을 실패하였습니다.")
             }
         });
 
-        $("#enterRoom").click(function (e) { // 방 입장용 모달
+        $("#enterRoom").click(function (e) { // 방 입장 모달
             e.preventDefault();
             $('#r_enter').modal("show");
         });
 
-        $("#e_modalY").click(function () {// 방 입장 버튼 클릭
+        $("#e_modalY").click(function () {
             var eName = $('#e_code').val();
-            /* <![CDATA[ */
-            var userId = [[ ${name} ]];
-            /* ]]> */
             if (eName === "") {
                 alert("입장 코드를 입력하세요");
                 $("#e_code").focus();
                 return;
             }
-            //JSON ID,CODE
-            var obj = new Object();
-            obj.userId = userId;
-            obj.roomId = eName;
-
-            $('#r_enter').modal("hide");
             // JSON 으로 ID 랑 입장 코드 보내줘야함
             $.ajax({
-                type:"POST",
-                url:"http://192.168.43.70:5555/roomserver/rooms/enter",
-                accept:"application/json",
-                contentType:"application/json",
-                dataType:'text',
-                data: JSON.stringify(obj),
-                success: successRoomEnter(),
-                error : errorRoomEnter
-            })
-            function successRoomEnter(){
-                alert("방 입장에 성공하였습니다.");
-                refreshRoomList();
-            }
-            function errorRoomEnter(){
-                alert("방 입장에 실패하였습니다.");
-            }
+
+            });
         });
 
     </script>
@@ -733,6 +721,23 @@
                 $("#b_contents").focus();
                 return ;
             }
+            
+            /*var str = "";
+            str +=  "<tr class='test'>";
+            str +=  "<td>";
+            str +=  textTitle;
+            str +=  "</td>";
+            str += "<td>";
+            str +=  "박성진"; // userID로 수정 필요
+            str +=  "</td>";
+            str +=  "</tr>";
+            $("#board #boardList tbody").append(str);
+           
+            var myDiv = document.getElementById("new_contents");
+            var parent = myDiv.parentElement; // 부모 객체 알아내기
+            parent.removeChild(myDiv); // 부모로부터 myDiv 객체 떼어내기
+            alert("글 작성에 성공 하였습니다");*/
+             //JSON ID Rname
 
             createPosts(textTitle, textContents, "[[ ${userId} ]]", "[[ ${activatedRoom} ]]");
         });
@@ -756,8 +761,8 @@
         //alert("change "+ $("#selectedLang option:selected").val());
         alert("change language "+$("#selectedLang option:selected").val());
         editor.session.setMode("ace/mode/"+$("#selectedLang option:selected").val());
-    })
 
+    })
 </script>
 <script> // tab 이동시 div 차지하는 문제 해결하는 script code
 $(document).ready(function(){
@@ -778,114 +783,52 @@ $(document).ready(function(){
 
 
 <script> // for chat 
-var stompClient = null;
-var date = new Date();
-var d = date.getUTCDate();
-var m = date.getMonth() + 1;
-var y = date.getFullYear();
-var h = date.getHours();
-var min = date.getMinutes();
 
 
-var time = y + "/" + m + "/" + d + "  " + h + ":"+min;
+        function sendMsg(){
+            var date = new Date();
+            var d = date.getUTCDate();
+            var m = date.getMonth() + 1;
+            var y = date.getFullYear();
+            var h = date.getHours();
+            var min = date.getMinutes();
+            var txt = $("#btn-input").val();
 
 
-function setConnected(connected) { //없앨까?
-    $("#connect").prop("disabled", connected);
-    $("#disconnect").prop("disabled", !connected);
+           var time = y + "/" + m + "/" + d + "  " + h + ":"+min;
 
-    $("#_chat").html("");
-}
 
-function connect() {
-    var roomId = "[[ ${activatedRoom} ]]";
-    var socket = new SockJS('http://192.168.43.70:8500/websocket');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        setConnected(true);
-        console.log('Connected: ' + frame);
+           var newChat = document.createElement("li");
+           var oldChat = document.getElementById('_chat');
+           newChat.setAttribute("class","right clearfix");
+           
+           newChat.innerHTML = [
+                "<span class='chat-img pull-right'>",
+                "<img src='http://placehold.it/50/FA6F57/fff&text=ME' alt='User Avatar' class='img-circle' />",
+                "</span>",
+                "<div class='chat-body clearfix'>",
+                "<div class='header'>",
+                "<small class='text-muted'><span class='glyphicon glyphicon-time'></span>",
+                time,
+                "<strong class='pull-right primary-font'>",
+                "userID",
+                "</strong><div>",
+                "<p>",
+                txt,
+                "</p></div>"    
+           ].join(" ");
+           oldChat.appendChild(newChat);
+           $("#btn-input").val("");
+        }
 
-        ///topic/${roomID}
-        stompClient.subscribe('/topic/' + roomId, function (chat) { //받는거
-            showChat(JSON.parse(chat.body));
-        });
+        $(document).ready(function(){
+            $("#btn-input").keypress(function (e) {
+            if (e.which == 13){
+                   sendMsg();  // 실행할 이벤트
+        }
     });
-}
-
-function disconnect() {
-    if (stompClient !== null) {
-        stompClient.disconnect();
-    }
-    setConnected(false);
-    console.log("Disconnected");
-}
-
-
-function sendChat() {
-    var roomId = "[[ ${activatedRoom} ]]";
-    var userId = "[[ ${userId}]]"
-    //"/app/${roomId}"
-    //"/app/"+$("#roomID").val()+"/"
-    stompClient.send("/app/" + roomId, {}, JSON.stringify({ 'roomId': roomId, 'userId': userId, 'chatStr': $("#btn-input").val() }));
-
-}
-
-function showChat(chat) {
-    if("[[ ${userId} ]]" === chat.userId){
-        var newChat = document.createElement("li");
-        var oldChat = document.getElementById('_chat');
-        newChat.setAttribute("class","right clearfix");
-        newChat.innerHTML = [
-        "<span class='chat-img pull-right'>",
-        "<img src='http://placehold.it/50/FA6F57/fff&text=ME' alt='User Avatar' class='img-circle' />",
-        "</span>",
-        "<div class='chat-body clearfix'>",
-        "<div class='header'>",
-        "<small class='text-muted'><span class='glyphicon glyphicon-time'></span>",
-        time,
-        "<strong class='pull-right primary-font'>",
-        chat.userId,
-        "</strong><div>",
-        "<p>",
-        chat.chatStr,
-        "</p></div>"    
-    ].join(" ");
-    oldChat.append(newChat);
-    }
-    else{
-        var newChat = document.createElement("li");
-        var oldChat = document.getElementById('_chat');
-        newChat.setAttribute("class","left clearfix");
-        newChat.innerHTML = [
-        "<span class='chat-img pull-left'>",
-        "<img src='http://placehold.it/50/819FF7/fff&text=", chat.userId[0],chat.userId[1] ,"'alt='User Avatar' class='img-circle' />",
-        "</span>",
-        "<div class='chat-body clearfix'>",
-        "<div class='header'>",
-        "<small class='text-muted'><span class='glyphicon glyphicon-time'></span>",
-        time,
-        "<strong class='pull-right primary-font'>",
-        chat.userId,
-        "</strong><div>",
-        "<p>",
-        chat.chatStr,
-        "</p></div>"    
-    ].join(" ");
-    oldChat.append(newChat);
-    }
-}
-
-$(function () {
-    $("form").on('submit', function (e) {
-        e.preventDefault();
-        $("#btn-input").val("");
-    });
-    $("#connect").click(function () { connect(); });
-    $("#disconnect").click(function () { disconnect(); });
-    $("#btn-chat").click(function () { sendChat(); });
-
 });
-
+        
 
 </script>
 
@@ -943,103 +886,73 @@ $(function () {
         $("#executeResult").val(result);
     }
 </script>
-
-<script> //board read
-
-    $(document).on("click",".test",function(){
-        var str="";
-        var tdArr=[];
-        
-        var tr = $(this);
-        var td = tr.children();
-        $(this).each(function(i){
-            tdArr.push(td.eq(i).text());
-        })
-        var board_title = td.eq(0).text();
-        var user_name = td.eq(1).text();
-
-        var newDIV = document.createElement("div");
-            var board_test = document.getElementById("board");
-            var contents = document.getElementById("writeBoard");
-            newDIV.setAttribute("class","input-group col-xs-12");
-            newDIV.setAttribute("id", "prev_contents");
-            newDIV.innerHTML = [
-            "제목 : ",
-            board_title,
-            "<br>",
-            "작성자 : ",
-            user_name,
-            "<br>",
-            "내용 : <br>",
-            "전공종합설계",
-            "<button type='button' id='close_text' class='btn pull-right btn-danger'>닫기</button>"
-            ].join(" ");
-
-            board_test.insertBefore(newDIV,contents);
-    });
-
-    $(document).on("click","#close_text",function(){
-        var myDiv = document.getElementById("prev_contents");
-        var parent = myDiv.parentElement; // 부모 객체 알아내기
-        parent.removeChild(myDiv); // 부모로부터 myDiv 객체 떼어내기
-    })
-
-</script>
-
 <script>
-    function executeCode(){
-        var contents = ace.edit("editor").getValue();
-        var language = $("#selectedLang option:selected").val();
-        var roomId = "[[ ${activatedRoom} ]]";
-        var mainClass = $("#mainClass").val();
-        console.log(language+" "+roomId+" "+contents);
-        var result = compile(language, roomId, contents, mainClass);
-        console.log(result);
-        $("#executeResult").val(result);
-    }
-</script>
-
-    <script>
-var inputCheck = 0;
-var originCol = 0;
-var originRow = 0;
-var originCol_tmp = 0;
-var originRow_tmp = 0;
-$(document).ready(function(){
+    $(document).ready(function(){
     ace.edit("editor").on('input', function(e, target) {
-            if(inputCheck){
-                inputCheck = 0;
-                return;
-             }
             console.log(target.prevOp.args);
             console.log(target.prevOp.command.name);
 
             console.log(target.selection.cursor.column);
             console.log(target.selection.cursor.row);
             console.log(target);
-
-            sendCode(target.prevOp.args, target.prevOp.command.name, originCol, originRow, originCol_tmp, originRow_tmp, "[[ ${activatedRoom} ]]", "[[ ${userId} ]]");
-
-            //inputCheck = 1;
-            originCol = target.selection.cursor.column;
-            originRow = target.selection.cursor.row;
+            sendCode(target.prevOp.args, target.prevOp.command.name, target.selection.cursor.column, target.selection.cursor.row);
     });
-
-     ace.edit("editor").selection.on('changeCursor', function() {
-        originRow = originRow_tmp;
-        originCol = originCol_tmp;
-        originRow_tmp = ace.edit("editor").selection.cursor.row;
-        originCol_tmp = ace.edit("editor").selection.cursor.column;
-        console.log("change cursor["+originCol+","+originRow+"]");
-    });
-
-    sourceConnect("[[ ${activatedRoom} ]]", "[[ ${userId} ]]");
+    sourceConnect();
     connect();
 });
 
+var sourceClient;
+function sourceConnect() {
+    var roomId = "[[ ${activatedRoom} ]]";
+    var socket = new SockJS('http://192.168.43.70:8600/websocket');
+    sourceClient = Stomp.over(socket);
+    sourceClient.connect({}, function (frame) {
+        setConnected(true);
+        console.log('source Chatting Connected: ' + frame);
+
+        ///topic/${roomID}
+        sourceClient.subscribe('/source/' + roomId, function (chat) { //받는거
+            showCode(JSON.parse(chat.body));
+        });
+    });
+}
+
+function sourceDisconnect() {
+    if (sourceClient !== null) {
+        sourceClient.disconnect();
+    }
+    console.log("source Disconnected");
+}
+
+
+function sendCode(args, command, column, row) {
+    var roomId = "[[ ${activatedRoom} ]]";
+    var userId = "[[ ${userId} ]]";
+    //"/app/${roomId}"
+    //"/app/"+$("#roomID").val()+"/"
+    //stompClient.send("/app/" + roomId, {}, JSON.stringify({ 'roomId': roomId, 'userId': userId, 'chatStr': $("#btn-input").val() }));
+    sourceClient.send("/source/" + roomId, {}, JSON.stringify({ 'col': column, 'row': row, 'character': args, 'command' : command, 'userId' : userId}));
+
+}
+
+function showCode(msg) {
+    console.log(msg);
+    var userId = [[ ${userId} ]];
+    if(msg.userId === userId){
+        return;
+    }
+
+    if(msg.command === 'insertstring'){
+        ace.edit("editor").session.insert({row:msg.row, column:msg.col}, msg.character);
+    }else{
+        ace.edit("editor").session.insert({row:msg.row, column:msg.col}, "\b");
+    }
+
+    //ace.edit("editor").moveCursorTo(msg.row, msg.column);
+    //ace.edit("editor").session.
+}
 
 </script>
-
 </body>
 
 </html>

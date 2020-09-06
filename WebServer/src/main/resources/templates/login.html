@@ -11,11 +11,13 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.css">
+
+    <script src="js/config.js"></script>
 </head>
 
 <body>
 <div>
-    <form name="login" action="http://192.168.43.70:8100/login.do" method="POST" onsubmit="return checkBlank()">
+    <form name="login" action= "/login.do" method="POST" onsubmit="return checkBlank()">
         <p>
             <label>아이디</label>
             <input type="text" id="loginID" name="userId" class="form-control" placeholder="아이디를 입력하세요">
@@ -136,7 +138,7 @@
 
         $.ajax({
             type: "POST",
-            url: "http://192.168.43.70:5555/userserver/users/",
+            url: zuulserver+"/userserver/users/",
             accept: "application/json",
             contentType: "application/json",
             dataType: 'text',

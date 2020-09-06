@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8500
 eureka:
   client:
     registerWithEureka: false
@@ -11,9 +11,9 @@ eureka:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/chat_test?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false
-    username: root
-    password: root
+    url: jdbc:mysql://db644.c1p3uode6sio.ap-northeast-2.rds.amazonaws.com:3306/db644?serverTimezone=UTC
+    password: 644db2020!
+    username: admin
   jpa:
     show-sql: true
     hibernate:

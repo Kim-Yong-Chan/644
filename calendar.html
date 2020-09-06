@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link href="./lib/main.css" rel="stylesheet" />
+    <script src="js/bootstrap.js"></script>
+
+    <script src="./lib/main.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+        font-size: 14px;
+      }
+
+      #script-warning {
+        display: none;
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+        padding: 0 10px;
+        line-height: 40px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 12px;
+        color: red;
+      }
+
+      #loading {
+        display: none;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      #calendar {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <div id="script-warning"><code>php/get-events.php</code> must be running.</div>
+
+      <div id="loading">loading...</div>
+
+      <div id="calendar"></div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="s_add"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">일정 추가</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">X</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label>일정명</label><input type="text" id="schedule_name" class="form-control" /><br />
+            <label>시작</label><input type="date" id="currentDatetime" class="form-control" /><br />
+
+            <label>끝</label>
+            <input type="date" id="schedule_end" class="form-control" /><br />
+            <label>메모</label><input type="text" id="schedule_memo" class="form-control" /><br />
+          </div>
+          <div class="modal-footer">
+            <a class="btn" id="add_schedule" href="#">등록</a>
+            <button class="btn" type="button" data-dismiss="modal">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var calendarEl = document.getElementById("calendar");
+
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        headerToolbar: {
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+        },
+        editable: true,
+        navLinks: true, // can click day/week names to navigate views
+        dayMaxEvents: true, // allow "more" link when too many events
+        eventClick: function (info) {
+          alert("예정된 일정 : " + info.event.title);
+        },
+
+        dateClick: function (info) {
+          var str2arr = info.dateStr.split("-");
+          var s_date_obj = new Date(str2arr[0], str2arr[1] - 1, str2arr[2]);
+          var s_year = s_date_obj.getFullYear(); // 선택된날짜 연도
+          var s_month = s_date_obj.getMonth() + 1; // 선택된날짜 월
+          var s_date = s_date_obj.getDate(); // 선택된날짜 일
+          let defaultdate;
+
+          if (s_month < 10) {
+            if (s_date < 10) {
+              defaultdate = s_year + "-0" + s_month + "-0" + s_date;
+            } else {
+              defaultdate = s_year + "-0" + s_month + "-" + s_date;
+            }
+          } else {
+            if (s_date < 10) {
+              defaultdate = s_year + "-" + s_month + "-0" + s_date;
+            } else {
+              defaultdate = s_year + "-" + s_month + "-" + s_date;
+            }
+          }
+
+          $("#s_add").modal("show");
+          document.getElementById("currentDatetime").value = defaultdate;
+        },
+        events: [
+          {
+            url: "php/get-events.php",
+            failure: function () {
+              document.getElementById("script-warning").style.display = "block";
+            },
+          },
+        ],
+        loading: function (bool) {
+          document.getElementById("loading").style.display = bool ? "block" : "none";
+        },
+      });
+      calendar.render();
+      var addBtn = document.getElementById("add_schedule");
+      addBtn.onclick = function () {
+        var eventName = document.getElementById("schedule_name").value;
+        var startDate = document.getElementById("currentDatetime").value;
+        var endDate = document.getElementById("schedule_end").value;
+        calendar.addEvent({ title: eventName, start: startDate, end: endDate });
+        // ajax 로 서버에 데이터 전송하는 부분
+        // $.ajax({
+
+        // });
+        document.getElementById("schedule_name").value = "";
+        document.getElementById("schedule_end").value = "";
+        $("#s_add").modal("hide");
+      };
+    });
+  </script>
+</html>
