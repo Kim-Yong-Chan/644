@@ -11,7 +11,7 @@ eureka:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://cooperatool2.mysql.database.azure.com:3306/calendar_test?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://cooperatool2.mysql.database.azure.com:3306/cooperatool?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false
     username: huijun@cooperatool2
     password: Wjswhdtjf764
   jpa:
