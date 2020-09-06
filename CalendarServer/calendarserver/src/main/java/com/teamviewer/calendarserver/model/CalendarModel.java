@@ -23,10 +23,10 @@ public class CalendarModel {
     private String calName;
 
     @Column
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date calStart;
+    //@Temporal(TemporalType.TIMESTAMP)
+    private String calStart;
 
     @Column
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date calEnd;
+    //@Temporal(TemporalType.TIMESTAMP)
+    private String calEnd;
 }

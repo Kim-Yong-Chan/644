@@ -14,6 +14,6 @@ import java.util.Date;
 public class OutputCalendarModel {
     private int num;
     private String calName;
-    private Date calStart;
-    private Date calEnd;
+    private String calStart;
+    private String calEnd;
 }

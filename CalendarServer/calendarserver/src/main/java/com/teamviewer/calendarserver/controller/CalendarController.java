@@ -16,14 +16,14 @@ public class CalendarController {
     @Autowired
     private CalendarService calendarService;
 
-    @PostMapping("/create")
+    @PostMapping("/sch")
     public String addCalendar(@RequestBody CalendarModel calendarModel){
         calendarService.calCreate(calendarModel);
         log.debug("calendar add ok");
         return "ok";
     }
 
-    @PostMapping("/delete/{num}")
+    @PostMapping("/sch/{num}")
     public String delCalendar(@PathVariable int num){
         calendarService.calDelete(num);
         log.debug("calendar delete ok");
