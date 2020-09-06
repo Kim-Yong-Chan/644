@@ -1,5 +1,5 @@
 server:
-  port: 8200
+  port: 8300
 eureka:
   instance:
     prefer-ip-address: true
@@ -8,3 +8,15 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://cooperatool2.mysql.database.azure.com:3306/cooperatool?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false
+    username: huijun@cooperatool2
+    password: Wjswhdtjf764
+  jpa:
+    show-sql: true
+    hibernate:
+      format_sql: true
+      ddl-auto: create
