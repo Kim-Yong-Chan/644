@@ -1,5 +1,5 @@
 
-   var conn = new WebSocket('ws://localhost:8200/socket');
+   var conn = new WebSocket('ws://192.168.43.70:8200/socket');
 
    conn.onopen = function() {
        console.log("Connected to the signaling server");

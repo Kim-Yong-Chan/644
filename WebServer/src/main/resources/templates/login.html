@@ -15,7 +15,6 @@
     <script src="js/config.js"></script>
 </head>
 
-<body>
 <div>
     <form name="login" action= "/login.do" method="POST" onsubmit="return checkBlank()">
         <p>
@@ -62,7 +61,8 @@
         </div>
     </div>
 </div>
-</body>
+
+<body></body>
 
 <script>
     function checkBlank(){ //submit(로그인버튼) 누르기 전에 공백체크 formdata
@@ -148,6 +148,7 @@
         })
         function successCall() {
             alert("전송성공");
+            $("#testModal").model("hide");
         }
         function errorCall() {
             console.log(requset.responseText);

@@ -1,21 +1,27 @@
 server:
   port: 8500
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
-    registerWithEureka: false
-    fetchRegistry: false
-  server:
-    waitTimeInMsWhenSyncEmpty: 5
-  serviceUrl:
-    defaultZone: http://localhost:8761
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eurekaSvc}:${eurekaPort}/eureka/
+
+
 spring:
+  main:
+    allow-bean-definition-overriding: true
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://db644.c1p3uode6sio.ap-northeast-2.rds.amazonaws.com:3306/db644?serverTimezone=UTC
-    password: 644db2020!
-    username: admin
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MySQL_URL}:${MySQL_PORT}/${MySQL_DB}?serverTimezone=UTC
+    password: ${MySQL_PW}
+    username: ${MySQL_USER}
   jpa:
-    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
     hibernate:
-      format_sql: true
       ddl-auto: update
+    show-sql: true

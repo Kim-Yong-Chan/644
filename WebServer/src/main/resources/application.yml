@@ -2,7 +2,7 @@ server:
   port: 8100
   servlet:
     session:
-      timeout: 30s
+      timeout: 14400
 spring:
   thymeleaf:
     cache: false
@@ -18,4 +18,14 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://${eurekaSvc}:${eurekaPort}/eureka/
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000

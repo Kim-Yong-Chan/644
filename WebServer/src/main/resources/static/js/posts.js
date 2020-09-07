@@ -21,7 +21,8 @@ function createPosts( title,  contents,  userId,  roomId){
             refreshBoardList(roomId);
         }
         function errorBoardCreate(){
-            alert("게시글 작성을 실패하였습니다.")
+            alert("게시글 작성을 실패하였습니다.");
+            refreshBoardList(roomId);
         }
 }
 

@@ -18,9 +18,8 @@ import lombok.ToString;
 @Component
 @Getter
 @Setter
-@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @ToString
-public class UserInfo implements Serializable {
+public class UserInfo {
 	private static final long serialVersionUID = 1L;
 	private Integer activatedRoom;
 	private String userId;

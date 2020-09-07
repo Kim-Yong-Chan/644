@@ -1,19 +1,31 @@
-function getRoomList(){
+var  webserver = "http://20.39.185.121:5555"+"/webserver"
+
+function refreshRoomList(userId, sessionId){
     $.ajax({
         type:"GET",
-        url : webserver+"/RoomList",
+        url : webserver+"/RoomList/"+userId+"?sessionId="+sessionId,
         accept : "application/json",
         contentType : "application/json",
         dataType : 'text',
+        success: successRoomList(""),
     })
+    function successRoomList(result){
+        location.reload();
+    }
+    console.log("user " + userId);
 }
 
-function refreshRoomList(){
-    window.location.href = webserver+"/RoomList";
-}
-
-function refreshBoardList(roomId){
-    window.location.href = webserver+'/PostsList/'+roomId;
+function refreshBoardList(roomId, sessionId){
     console.log("activated " + roomId);
+    $.ajax({
+        type:"GET",
+        url : webserver+'/PostsList/'+roomId+"?sessionId="+sessionId,
+        accept : "application/json",
+        contentType : "application/json",
+        dataType : 'text',
+        success: successBoardList(""),
+    })
+    function successBoardList(result){
+        location.reload();
+    }
 }
-$(document).ready(getRoomList());

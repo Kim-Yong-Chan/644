@@ -28,26 +28,30 @@ public class ExecuteService {
 	public String ExecuteC(ExecuteModel executeModel) throws IOException, InterruptedException {
 		String cFilepath = executeModel.getRoomId()+".cpp";
 		String cFilename = executeModel.getRoomId()+".cpp";
-		String execFilename = "./"+executeModel.getRoomId()+".cpp.exec";
+		String execFilename = ""+executeModel.getRoomId()+".cpp.exec";
+		String execCommand = "./";
 		//String resultFilename = executeModel.getRoomId()+".cpp.result";
 		String command =  "g++ -o ./"+execFilename+" ./"+cFilename;
 
-		return execute(cFilepath, cFilename, execFilename, executeModel.getContents(), command);
+		return execute(cFilepath, cFilename, execCommand, execFilename, executeModel.getContents(), command,"c");
 	}
 
 	public String ExecuteJava(ExecuteModel executeModel) throws IOException, InterruptedException {
 		String javaFilepath = executeModel.getRoomId()+".java";
 		String javaFilename = executeModel.getRoomId()+".java";
-		String execFilename = "java "+executeModel.getMainClass();
+		String execFilename = ""+executeModel.getMainClass();
+		String execCommand = "java ";
 		//String resultFilename = executeModel.getRoomId()+".cpp.result";
 		String command =  "javac "+javaFilename;
 
-		return execute(javaFilepath, javaFilename, execFilename, executeModel.getContents(), command);
+		return execute(javaFilepath, javaFilename, execCommand, execFilename, executeModel.getContents(), command, "java");
 	}
 
-	public String execute(String filepath, String filename, String execFilename, String contents, String commend) throws
+	public String execute(String filepath, String filename,String execCommand, String execFilename, String contents, String commend, String type) throws
 		IOException, InterruptedException {
 		String res = "";
+		String compileError = "";
+		String RunError = "";
 		byte[] bytes = new byte[1024];
 
 		FileOutputStream fos = new FileOutputStream(filepath);
@@ -55,18 +59,42 @@ public class ExecuteService {
 		fos.close();
 		Runtime runtime = Runtime.getRuntime();
 		Process compile = runtime.exec(commend);
+		compileError = getErrorMsg(compile, type);
 		compile.waitFor();
 		try{
-			log.info("./"+execFilename);
-			Process exec = runtime.exec(execFilename);
-			BufferedReader br = new BufferedReader(new InputStreamReader(exec.getInputStream()));
-			Scanner scanner = new Scanner(br);
-			scanner.useDelimiter(System.getProperty("line.separator"));
-			while(scanner.hasNext())
-				res += scanner.next();
+			log.info(execCommand+execFilename);
+			Process exec = runtime.exec(execCommand+execFilename);
+			res += getMsg(exec);
+			exec.waitFor();
+			if(type.compareTo("c") == 0)runtime.exec("rm ./"+execFilename);
+			else runtime.exec("rm ./"+execFilename+".class");
+			log.info("res "+res);
 			return res;
 		}catch (Exception e) {
-			return "compile error";
+			log.info("compile error "+compileError);
+			return compileError;
 		}
+	}
+
+	public String getMsg(Process exec){
+		String res = "";
+		BufferedReader br = new BufferedReader(new InputStreamReader(exec.getInputStream()));
+		Scanner scanner = new Scanner(br);
+		scanner.useDelimiter(System.getProperty("line.separator"));
+		while(scanner.hasNext())
+			res += scanner.next();
+		return res;
+	}
+
+	public String getErrorMsg(Process exec, String type){
+		String res = "";
+		BufferedReader br;
+		if(type.compareTo("c") == 0) br = new BufferedReader(new InputStreamReader(exec.getErrorStream()));
+		else br =  new BufferedReader(new InputStreamReader(exec.getInputStream()));
+		Scanner scanner = new Scanner(br);
+		scanner.useDelimiter(System.getProperty("line.separator"));
+		while(scanner.hasNext())
+			res += scanner.next();
+		return res;
 	}
 }

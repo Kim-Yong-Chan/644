@@ -7,17 +7,14 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://192.168.43.70:8761/eureka
+      defaultZone: http://${eurekaSvc}:${eurekaPort}/eureka/
 
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-#    password: 644db2020!
-#    username: admin
-#    url: jdbc:mysql://db-644.cria4byvgcl8.ap-northeast-2.rds.amazonaws.com:3306/db-644?serverTimezone=UTC
-    url: jdbc:mysql://db644.c1p3uode6sio.ap-northeast-2.rds.amazonaws.com:3306/db644?serverTimezone=UTC
-    password: 644db2020!
-    username: admin
+    url: jdbc:mysql://${MySQL_URL}:${MySQL_PORT}/${MySQL_DB}?serverTimezone=UTC
+    password: ${MySQL_PW}
+    username: ${MySQL_USER}
 
   jpa:
     database: mysql

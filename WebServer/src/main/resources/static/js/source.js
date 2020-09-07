@@ -1,7 +1,7 @@
 var sourceClient;
 var loginId;
 function sourceConnect(roomId, userId) {
-    var socket = new SockJS('http://192.168.43.70:8600/websocket');
+    var socket = new SockJS('http://20.39.185.121:5557/sourceserver/websocket');
     sourceClient = Stomp.over(socket);
     sourceClient.connect({}, function (frame) {
         setConnected(true);
