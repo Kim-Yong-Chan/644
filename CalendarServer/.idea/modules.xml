@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CalendarServer.iml" filepath="$PROJECT_DIR$/.idea/CalendarServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/calendarserver/calendarserver.iml" filepath="$PROJECT_DIR$/calendarserver/calendarserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/calendarserver/calendarserver.iml" filepath="$PROJECT_DIR$/calendarserver/calendarserver.iml" />
     </modules>
   </component>
 </project>

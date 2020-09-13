@@ -1,109 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="c45356cc-a984-4535-a74c-7d42c385e273" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ChatServer/src/main/java/com/teamviewer/chatserver/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatServer/src/main/java/com/teamviewer/chatserver/controllers/ChatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cootoo.html" beforeDir="false" afterPath="$PROJECT_DIR$/../cootoo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales-all.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales-all.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/af.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/af.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-dz.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-dz.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-kw.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-kw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-ly.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-ly.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-ma.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-ma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-sa.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-sa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-tn.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar-tn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/az.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/az.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/bg.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/bg.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/bs.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/bs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ca.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ca.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/cs.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/cs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/da.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/da.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/de.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/de.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/el.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/el.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/en-au.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/en-au.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/en-gb.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/en-gb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/en-nz.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/en-nz.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/es-us.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/es-us.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/es.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/es.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/et.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/et.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/eu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/eu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/fa.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/fa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/fi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/fi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/fr-ca.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/fr-ca.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/fr-ch.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/fr-ch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/fr.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/fr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/gl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/gl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/he.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/he.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/hi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/hi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/hr.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/hr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/hu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/hu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/id.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/id.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/is.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/is.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/it.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/it.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ja.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ja.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ka.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ka.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/kk.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/kk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ko.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ko.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/lb.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/lb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/lt.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/lt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/lv.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/lv.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/mk.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/mk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ms.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/nb.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/nb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/nl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/nl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/nn.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/nn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/pl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/pl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/pt-br.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/pt-br.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/pt.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/pt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ro.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ro.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ru.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ru.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sk.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sq.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sq.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sr-cyrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sr-cyrl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sr.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sv.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/sv.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/th.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/th.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/tr.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/tr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ug.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/ug.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/uk.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/uk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/uz.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/uz.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/vi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/vi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/zh-cn.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/zh-cn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/zh-tw.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/locales/zh-tw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/main.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/main.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/main.esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/main.esm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/core/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/core/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/daygrid/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/daygrid/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/daygrid/main.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/daygrid/main.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/daygrid/main.esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/daygrid/main.esm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/daygrid/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/daygrid/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/daygrid/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/daygrid/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hwa/@fullcalendar/interaction/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hwa/@fullcalendar/interaction/main.js" afterDir="false" />
-    </list>
-=======
     <list default="true" id="c45356cc-a984-4535-a74c-7d42c385e273" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
->>>>>>> aec4d77db12e96259e4f941df54590ba27b7d207
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-<<<<<<< HEAD
-=======
   <component name="FileEditorManager">
     <leaf />
   </component>
->>>>>>> aec4d77db12e96259e4f941df54590ba27b7d207
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -120,6 +29,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/teamviewer/DatabaseServer/repository/DatabaseRepository.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/teamviewer/DatabaseServer/config/SwaggerConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/teamviewer/DatabaseServer/model/request/DatabaseRequestModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/teamviewer/DatabaseServer/controllers/DatabaseController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/teamviewer/DatabaseServer/model/request/DatabaseRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/teamviewer/DatabaseServer/model/DatabaseModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/teamviewer/DatabaseServer/services/DatabaseService.java" />
+      </list>
+    </option>
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -133,14 +57,7 @@
     <option name="width" value="585" />
     <option name="height" value="725" />
   </component>
-  <component name="ProjectId" id="1h8HXRu4QUInELNh98Oul62CYJl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-<<<<<<< HEAD
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
-    <option name="showLibraryContents" value="true" />
-=======
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -178,20 +95,25 @@
         </subPane>
       </pane>
     </panes>
->>>>>>> aec4d77db12e96259e4f941df54590ba27b7d207
   </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-<<<<<<< HEAD
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1599385284997" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-=======
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1599385314061" />
->>>>>>> aec4d77db12e96259e4f941df54590ba27b7d207
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="DatabaseServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -201,18 +123,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -224,39 +134,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599363682851</updated>
-<<<<<<< HEAD
-      <workItem from="1599363686518" duration="9358000" />
-      <workItem from="1599385841487" duration="45000" />
-      <workItem from="1599385897671" duration="617000" />
-      <workItem from="1599386789384" duration="9000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="361" y="71" key="#Notifications" timestamp="1599386918902">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1599386918902" />
-    <state x="344" y="6" key="CommitChangelistDialog2" timestamp="1599386971080">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="344" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1599386971080" />
-    <state x="147" y="71" key="DiffContextDialog" timestamp="1599386912209">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="147" y="71" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1599386912209" />
-    <state x="570" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599386881270">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="570" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1599386881270" />
-    <state x="495" y="204" key="git4idea.merge.GitPullDialog" timestamp="1599386934871">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="495" y="204" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1599386934871" />
-=======
       <workItem from="1599363686518" duration="9908000" />
     </task>
     <servers />
@@ -375,7 +252,6 @@
         </state>
       </provider>
     </entry>
->>>>>>> aec4d77db12e96259e4f941df54590ba27b7d207
   </component>
   <component name="masterDetails">
     <states>
