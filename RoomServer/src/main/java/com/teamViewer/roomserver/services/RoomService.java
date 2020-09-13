@@ -42,7 +42,6 @@ public class RoomService {
         return roomRepository.findAllByRoomId(roomId);
     }
 
-
     //되는거 확인
     public String createRoom(String userId, String name) {
         //roomId생성하고(중복허용 X) roomRequestModel의 userId와 roomName을 더해서 테이블에 튜플 추가하고 id 리턴
@@ -62,5 +61,4 @@ public class RoomService {
         roomRepository.save(newRoom);
         return roomIdString;
     }
-
 }
