@@ -20,20 +20,19 @@ public class DatabaseController {
     @Autowired
     DatabaseService dbservice;
 
-    @RequestMapping(value = "/query", method = RequestMethod.POST)
-    public ArrayList<Map<String, String>> getquery(@RequestBody DatabaseRequest queryRequestModel) throws SQLException {
+    //select
+    @RequestMapping(value = "/select", method = RequestMethod.POST)
+    public ArrayList<Map<String, String>> getselectquery(@RequestBody DatabaseRequest queryRequestModel) throws SQLException {
         log.info("Get " + queryRequestModel.getRoomId() + "'s query : " + queryRequestModel.getQuery());
-//
-//        Map<String, String> temp = dbservice.process(queryRequestModel);
-//
-//
-//        for (String key : temp.keySet()) {
-//            String value = temp.get(key);
-//            System.out.println("[key]:" + key + ", [value]:" + value);
-//        }
-//
-        return dbservice.process(queryRequestModel);
+        return dbservice.select(queryRequestModel);
     }
 
+
+    //Not select
+    @RequestMapping(value = "/others", method = RequestMethod.POST)
+    public String getothersquery(@RequestBody DatabaseRequest queryRequestModel) throws SQLException {
+        log.info("Get " + queryRequestModel.getRoomId() + "'s query : " + queryRequestModel.getQuery());
+        return dbservice.others(queryRequestModel);
+    }
 
 }

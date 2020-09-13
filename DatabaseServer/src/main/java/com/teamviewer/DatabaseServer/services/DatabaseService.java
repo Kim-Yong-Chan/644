@@ -19,25 +19,40 @@ public class DatabaseService {
     @Autowired
     private DataSource dataSource;
 
-    public ArrayList<Map<String,String>> process(DatabaseRequest databasemodel) throws SQLException {
+    public String others(DatabaseRequest databasemodel) throws SQLException{
+        Connection con = null;
+
+        //query에 POST로 얻은 SQL있음
+        Statement stmt = dataSource.getConnection().createStatement();
+        String query = databasemodel.getQuery();
+
+        boolean result = stmt.execute(query);
+        if(result==false)
+            return "성공하였습니다.";
+        else
+            return "실패하였습니다.";
+    }
+
+    public ArrayList<Map<String,String>> select(DatabaseRequest databasemodel) throws SQLException {
         //databasemodel에 roomid, query를 getRoomId(), getQuery()로 가져다쓴다
         Connection con = null;
 
+        //query에 POST로 얻은 SQL있음
         Statement stmt = dataSource.getConnection().createStatement();
         String query = databasemodel.getQuery();
-        //query에 POST로 얻은 SQL있음
 
         ResultSet rs = stmt.executeQuery(query);
         ResultSetMetaData rsmd = rs.getMetaData();
 
         //속성 수
         int columnCnt = rsmd.getColumnCount();
-        
+
         //속성 이름들의 리스트
         ArrayList <String> columnnameList = new ArrayList<>();
-        
+
+        //clist에 Map데이터 저장 (column명, 해당 column의 i+1번째 값)
         ArrayList<Map<String, String>> clist = new ArrayList<>();
-        
+
         for(int i = 1; i <= columnCnt; ++i) {
             columnnameList.add(rsmd.getColumnName(i));
         }
@@ -48,9 +63,7 @@ public class DatabaseService {
             for(int i = 0; i < columnCnt; ++i){
                 String colname = columnnameList.get(i);
                 System.out.println(colname);
-
                 ret.put(colname, String.valueOf(rs.getObject(colname)));
-                
                 //리스트나 맵으로 리턴해줘야돼
             }
             clist.add(ret);
@@ -58,4 +71,3 @@ public class DatabaseService {
         return clist;
     }
 }
-
