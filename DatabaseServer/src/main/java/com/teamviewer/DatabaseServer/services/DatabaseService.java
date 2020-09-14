@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -25,7 +26,18 @@ public class DatabaseService {
         //query에 POST로 얻은 SQL있음
         Statement stmt = dataSource.getConnection().createStatement();
         String query = databasemodel.getQuery();
-
+        /*
+        String[] queryArr=query.split(" ");
+        if(queryArr[0].equals("CREATE")){
+            String tmp=databasemodel.getRoomId()+queryArr[2];
+            queryArr[2]=tmp;
+            StringBuilder sb=new StringBuilder();
+            for(int i=0;i<queryArr.length;i++) {
+                sb.append(queryArr[i]);
+                sb.append()
+            }
+        }
+         */
         boolean result = stmt.execute(query);
         if(result==false)
             return "성공하였습니다.";
@@ -33,7 +45,7 @@ public class DatabaseService {
             return "실패하였습니다.";
     }
 
-    public ArrayList<Map<String,String>> select(DatabaseRequest databasemodel) throws SQLException {
+    public List<Map<String,String>> select(DatabaseRequest databasemodel) throws SQLException {
         //databasemodel에 roomid, query를 getRoomId(), getQuery()로 가져다쓴다
         Connection con = null;
 
@@ -51,7 +63,7 @@ public class DatabaseService {
         ArrayList <String> columnnameList = new ArrayList<>();
 
         //clist에 Map데이터 저장 (column명, 해당 column의 i+1번째 값)
-        ArrayList<Map<String, String>> clist = new ArrayList<>();
+        List<Map<String, String>> clist = new ArrayList<>();
 
         for(int i = 1; i <= columnCnt; ++i) {
             columnnameList.add(rsmd.getColumnName(i));

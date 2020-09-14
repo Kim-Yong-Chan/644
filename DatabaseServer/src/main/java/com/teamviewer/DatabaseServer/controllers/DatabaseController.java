@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class DatabaseController {
 
     //select
     @RequestMapping(value = "/select", method = RequestMethod.POST)
-    public ArrayList<Map<String, String>> getselectquery(@RequestBody DatabaseRequest queryRequestModel) throws SQLException {
+    public List<Map<String, String>> getselectquery(@RequestBody DatabaseRequest queryRequestModel) throws SQLException {
         log.info("Get " + queryRequestModel.getRoomId() + "'s query : " + queryRequestModel.getQuery());
         return dbservice.select(queryRequestModel);
     }

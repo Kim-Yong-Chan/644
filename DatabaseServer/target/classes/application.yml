@@ -1,5 +1,11 @@
 server:
   port: 8300
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+
 eureka:
   instance:
     prefer-ip-address: true
